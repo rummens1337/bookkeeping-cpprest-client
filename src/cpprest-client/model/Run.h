@@ -22,6 +22,7 @@
 #include "../ModelBase.h"
 
 #include "RunType.h"
+#include <cpprest/details/basic_types.h>
 #include "RunQuality.h"
 
 namespace org {
@@ -57,11 +58,11 @@ public:
     /// <summary>
     /// The unique identifier of this entity.
     /// </summary>
-    int64_t getActivityId() const;
+    utility::string_t getActivityId() const;
     bool activityIdIsSet() const;
     void unsetActivityId();
 
-    void setActivityId(int64_t value);
+    void setActivityId(const utility::string_t& value);
 
     /// <summary>
     /// Total data volume read out from the detectors by the O2 system in bytes.
@@ -75,11 +76,11 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getCreatedAt() const;
+    utility::datetime getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
 
-    void setCreatedAt(int64_t value);
+    void setCreatedAt(const utility::datetime& value);
 
     /// <summary>
     /// The unique identifier of this entity.
@@ -156,55 +157,55 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getTimeO2End() const;
+    utility::datetime getTimeO2End() const;
     bool timeO2EndIsSet() const;
     void unsetTimeO2End();
 
-    void setTimeO2End(int64_t value);
+    void setTimeO2End(const utility::datetime& value);
 
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getTimeO2Start() const;
+    utility::datetime getTimeO2Start() const;
     bool timeO2StartIsSet() const;
     void unsetTimeO2Start();
 
-    void setTimeO2Start(int64_t value);
+    void setTimeO2Start(const utility::datetime& value);
 
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getTimeTrgEnd() const;
+    utility::datetime getTimeTrgEnd() const;
     bool timeTrgEndIsSet() const;
     void unsetTimeTrgEnd();
 
-    void setTimeTrgEnd(int64_t value);
+    void setTimeTrgEnd(const utility::datetime& value);
 
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getTimeTrgStart() const;
+    utility::datetime getTimeTrgStart() const;
     bool timeTrgStartIsSet() const;
     void unsetTimeTrgStart();
 
-    void setTimeTrgStart(int64_t value);
+    void setTimeTrgStart(const utility::datetime& value);
 
     /// <summary>
     /// Unix timestamp when this entity was last updated.
     /// </summary>
-    int64_t getUpdatedAt() const;
+    utility::datetime getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
 
-    void setUpdatedAt(int64_t value);
+    void setUpdatedAt(const utility::datetime& value);
 
 
 protected:
-    int64_t m_ActivityId;
+    utility::string_t m_ActivityId;
     bool m_ActivityIdIsSet;
     int64_t m_BytesReadOut;
     bool m_BytesReadOutIsSet;
-    int64_t m_CreatedAt;
+    utility::datetime m_CreatedAt;
     bool m_CreatedAtIsSet;
     int64_t m_Id;
     bool m_IdIsSet;
@@ -222,15 +223,15 @@ protected:
     bool m_RunQualityIsSet;
     std::shared_ptr<RunType> m_RunType;
     bool m_RunTypeIsSet;
-    int64_t m_TimeO2End;
+    utility::datetime m_TimeO2End;
     bool m_TimeO2EndIsSet;
-    int64_t m_TimeO2Start;
+    utility::datetime m_TimeO2Start;
     bool m_TimeO2StartIsSet;
-    int64_t m_TimeTrgEnd;
+    utility::datetime m_TimeTrgEnd;
     bool m_TimeTrgEndIsSet;
-    int64_t m_TimeTrgStart;
+    utility::datetime m_TimeTrgStart;
     bool m_TimeTrgStartIsSet;
-    int64_t m_UpdatedAt;
+    utility::datetime m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 };
 

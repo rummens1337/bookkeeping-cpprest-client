@@ -26,11 +26,11 @@ CreateLog::CreateLog()
     m_AttachmentsIsSet = false;
     m_ParentLogId = 0L;
     m_ParentLogIdIsSet = false;
-    m_RunNumbersIsSet = false;
     m_Text = utility::conversions::to_string_t("");
     m_TextIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
+    m_RunNumbersIsSet = false;
 }
 
 CreateLog::~CreateLog()
@@ -55,10 +55,6 @@ web::json::value CreateLog::toJson() const
     {
         val[utility::conversions::to_string_t("parentLogId")] = ModelBase::toJson(m_ParentLogId);
     }
-    if(m_RunNumbersIsSet)
-    {
-        val[utility::conversions::to_string_t("runNumbers")] = ModelBase::toJson(m_RunNumbers);
-    }
     if(m_TextIsSet)
     {
         val[utility::conversions::to_string_t("text")] = ModelBase::toJson(m_Text);
@@ -66,6 +62,10 @@ web::json::value CreateLog::toJson() const
     if(m_TitleIsSet)
     {
         val[utility::conversions::to_string_t("title")] = ModelBase::toJson(m_Title);
+    }
+    if(m_RunNumbersIsSet)
+    {
+        val[utility::conversions::to_string_t("runNumbers")] = ModelBase::toJson(m_RunNumbers);
     }
 
     return val;
@@ -95,16 +95,6 @@ bool CreateLog::fromJson(const web::json::value& val)
             setParentLogId(refVal_parentLogId);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("runNumbers")))
-    {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("runNumbers"));
-        if(!fieldValue.is_null())
-        {
-            std::vector<int64_t> refVal_runNumbers;
-            ok &= ModelBase::fromJson(fieldValue, refVal_runNumbers);
-            setRunNumbers(refVal_runNumbers);
-        }
-    }
     if(val.has_field(utility::conversions::to_string_t("text")))
     {
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("text"));
@@ -125,6 +115,16 @@ bool CreateLog::fromJson(const web::json::value& val)
             setTitle(refVal_title);
         }
     }
+    if(val.has_field(utility::conversions::to_string_t("runNumbers")))
+    {
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("runNumbers"));
+        if(!fieldValue.is_null())
+        {
+            std::vector<int64_t> refVal_runNumbers;
+            ok &= ModelBase::fromJson(fieldValue, refVal_runNumbers);
+            setRunNumbers(refVal_runNumbers);
+        }
+    }
     return ok;
 }
 
@@ -143,10 +143,6 @@ void CreateLog::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("parentLogId"), m_ParentLogId));
     }
-    if(m_RunNumbersIsSet)
-    {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("runNumbers"), m_RunNumbers));
-    }
     if(m_TextIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("text"), m_Text));
@@ -154,6 +150,10 @@ void CreateLog::toMultipart(std::shared_ptr<MultipartFormData> multipart, const 
     if(m_TitleIsSet)
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("title"), m_Title));
+    }
+    if(m_RunNumbersIsSet)
+    {
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("runNumbers"), m_RunNumbers));
     }
 }
 
@@ -178,12 +178,6 @@ bool CreateLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("parentLogId")), refVal_parentLogId );
         setParentLogId(refVal_parentLogId);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("runNumbers")))
-    {
-        std::vector<int64_t> refVal_runNumbers;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("runNumbers")), refVal_runNumbers );
-        setRunNumbers(refVal_runNumbers);
-    }
     if(multipart->hasContent(utility::conversions::to_string_t("text")))
     {
         utility::string_t refVal_text;
@@ -195,6 +189,12 @@ bool CreateLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
         utility::string_t refVal_title;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("title")), refVal_title );
         setTitle(refVal_title);
+    }
+    if(multipart->hasContent(utility::conversions::to_string_t("runNumbers")))
+    {
+        std::vector<int64_t> refVal_runNumbers;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("runNumbers")), refVal_runNumbers );
+        setRunNumbers(refVal_runNumbers);
     }
     return ok;
 }
@@ -239,26 +239,6 @@ void CreateLog::unsetParentLogId()
 {
     m_ParentLogIdIsSet = false;
 }
-std::vector<int64_t>& CreateLog::getRunNumbers()
-{
-    return m_RunNumbers;
-}
-
-void CreateLog::setRunNumbers(std::vector<int64_t> value)
-{
-    m_RunNumbers = value;
-    m_RunNumbersIsSet = true;
-}
-
-bool CreateLog::runNumbersIsSet() const
-{
-    return m_RunNumbersIsSet;
-}
-
-void CreateLog::unsetRunNumbers()
-{
-    m_RunNumbersIsSet = false;
-}
 utility::string_t CreateLog::getText() const
 {
     return m_Text;
@@ -298,6 +278,26 @@ bool CreateLog::titleIsSet() const
 void CreateLog::unsetTitle()
 {
     m_TitleIsSet = false;
+}
+std::vector<int64_t>& CreateLog::getRunNumbers()
+{
+    return m_RunNumbers;
+}
+
+void CreateLog::setRunNumbers(std::vector<int64_t> value)
+{
+    m_RunNumbers = value;
+    m_RunNumbersIsSet = true;
+}
+
+bool CreateLog::runNumbersIsSet() const
+{
+    return m_RunNumbersIsSet;
+}
+
+void CreateLog::unsetRunNumbers()
+{
+    m_RunNumbersIsSet = false;
 }
 }
 }

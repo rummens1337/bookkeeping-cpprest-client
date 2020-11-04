@@ -74,15 +74,6 @@ public:
     void setParentLogId(int64_t value);
 
     /// <summary>
-    /// A list of run numbers
-    /// </summary>
-    std::vector<int64_t>& getRunNumbers();
-    bool runNumbersIsSet() const;
-    void unsetRunNumbers();
-
-    void setRunNumbers(std::vector<int64_t> value);
-
-    /// <summary>
     /// Body of the log.
     /// </summary>
     utility::string_t getText() const;
@@ -100,18 +91,27 @@ public:
 
     void setTitle(const utility::string_t& value);
 
+    /// <summary>
+    /// A list of run numbers
+    /// </summary>
+    std::vector<int64_t>& getRunNumbers();
+    bool runNumbersIsSet() const;
+    void unsetRunNumbers();
+
+    void setRunNumbers(std::vector<int64_t> value);
+
 
 protected:
     std::vector<std::shared_ptr<Attachment>> m_Attachments;
     bool m_AttachmentsIsSet;
     int64_t m_ParentLogId;
     bool m_ParentLogIdIsSet;
-    std::vector<int64_t> m_RunNumbers;
-    bool m_RunNumbersIsSet;
     utility::string_t m_Text;
     bool m_TextIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
+    std::vector<int64_t> m_RunNumbers;
+    bool m_RunNumbersIsSet;
 };
 
 

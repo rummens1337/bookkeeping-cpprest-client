@@ -37,3 +37,6 @@ cmake_install.cmake
 
 # Dependencies
 /cpprestsdk*
+
+# IDE files
+.vscode*
