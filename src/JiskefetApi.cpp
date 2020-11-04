@@ -6,8 +6,8 @@
 #include <boost/date_time/time_facet.hpp>
 #include <cpprest/json.h>
 #include "cpprest-client/api/FlpApi.h"
-#include "cpprest-client/api/LogsApi.h"
-#include "cpprest-client/api/RunsApi.h"
+#include "cpprest-client/api/LogApi.h"
+#include "cpprest-client/api/RunApi.h"
 
 
 namespace jiskefet
@@ -87,8 +87,8 @@ boost::posix_time::ptime ptimeFromString(std::string t)
 
 JiskefetApi::JiskefetApi(std::string url, std::string token)
 {
-    apiClient = std::make_shared<io::swagger::client::api::ApiClient>();
-    auto apiConfiguration = std::make_shared<io::swagger::client::api::ApiConfiguration>();
+    apiClient = std::make_shared<org::openapitools::client::api::ApiClient>();
+    auto apiConfiguration = std::make_shared<org::openapitools::client::api::ApiConfiguration>();
     apiConfiguration->setBaseUrl(url);
     apiConfiguration->setApiKey("Authorization", " Bearer " + token);
     apiConfiguration->setUserAgent("JiskefetCppApi");
@@ -99,24 +99,24 @@ void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
       boost::posix_time::ptime triggerStart, std::string activityId, 
       RunType runType, int64_t nDetectors, int64_t nFlps, int64_t nEpns) 
 {
-    io::swagger::client::api::RunsApi runsApi(apiClient);
-    auto dto = std::make_shared<io::swagger::client::model::CreateRunDto>();
+    org::openapitools::client::api::RunApi runApi(apiClient);
+    auto dto = std::make_shared<org::openapitools::client::model::Run>();
     dto->setRunNumber(runNumber);
-    dto->setO2StartTime(ptimeToDateTime(o2Start));
-    dto->setTrgStartTime(ptimeToDateTime(triggerStart));
+    dto->setTimeO2Start(ptimeToDateTime(o2Start));
+    dto->setTimeTrgStart(ptimeToDateTime(triggerStart));
     dto->setRunType(runTypeToString(runType));
     dto->setActivityId(activityId);
     dto->setNDetectors(nDetectors);
     dto->setNFlps(nFlps);
     dto->setNEpns(nEpns);
-    runsApi.runsPost(dto).get();
+    runApi.runsPost(dto).get();
 }
 
 void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
       RunQuality runQuality)
 {
-    io::swagger::client::api::RunsApi runsApi(apiClient);
-    auto dto = std::make_shared<io::swagger::client::model::PatchRunDto>();
+    org::openapitools::client::api::RunsApi runsApi(apiClient);
+    auto dto = std::make_shared<org::openapitools::client::model::PatchRunDto>();
     dto->setO2EndTime(ptimeToDateTime(o2End));
     dto->setTrgEndTime(ptimeToDateTime(triggerEnd));
     dto->setRunQuality(runQualityToString(runQuality));
@@ -125,8 +125,8 @@ void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boos
 
 void JiskefetApi::flpAdd(int64_t runNumber, std::string flpName, std::string hostName)
 {
-    io::swagger::client::api::FlpApi flpApi(apiClient);
-    auto dto = std::make_shared<io::swagger::client::model::CreateFlpDto>();
+    org::openapitools::client::api::FlpApi flpApi(apiClient);
+    auto dto = std::make_shared<org::openapitools::client::model::CreateFlpDto>();
     dto->setRun(runNumber);
     dto->setFlpName(flpName);
     dto->setFlpHostname(hostName);
@@ -136,8 +136,8 @@ void JiskefetApi::flpAdd(int64_t runNumber, std::string flpName, std::string hos
 void JiskefetApi::flpUpdateCounters(int64_t runNumber, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
       int64_t nRecordingBytes, int64_t nFairMqBytes)
 {
-    io::swagger::client::api::FlpApi flpApi(apiClient);
-    auto dto = std::make_shared<io::swagger::client::model::PatchFlpDto>();
+    org::openapitools::client::api::FlpApi flpApi(apiClient);
+    auto dto = std::make_shared<org::openapitools::client::model::PatchFlpDto>();
     dto->setEquipmentBytes(nEquipmentBytes);
     dto->setFairMQBytes(nFairMqBytes);
     dto->setNSubTimeframes(nSubtimeframes);
@@ -147,12 +147,12 @@ void JiskefetApi::flpUpdateCounters(int64_t runNumber, std::string flpName, int6
 
 std::vector<Run> JiskefetApi::getRuns(const GetRunsParameters& params)
 {
-    io::swagger::client::api::RunsApi runsApi(apiClient);
+    org::openapitools::client::api::RunApi runsApi(apiClient);
     auto emptyString = boost::optional<std::string>();
     auto emptyTime = boost::optional<utility::datetime>();
     auto emptyInt = boost::optional<int64_t>();
 
-    pplx::task<std::shared_ptr<io::swagger::client::model::Object>> taskRunsGet = runsApi.runsGet(
+    pplx::task<std::shared_ptr<org::openapitools::client::model::Object>> taskRunsGet = runsApi.runsGet(
         params.orderBy,
         params.orderDirection ? orderDirectionToString(*params.orderDirection) : emptyString,
         params.pageSize ? *params.pageSize : emptyInt,
@@ -163,14 +163,14 @@ std::vector<Run> JiskefetApi::getRuns(const GetRunsParameters& params)
         params.startTimeTrgStart ? ptimeToDateTime(*params.startTimeTrgStart) : emptyTime,
         params.endTimeTrgStart ? ptimeToDateTime(*params.endTimeTrgStart) : emptyTime,
         params.startTimeTrgEnd ? ptimeToDateTime(*params.startTimeTrgEnd) : emptyTime,
-        params.endTimeTrgEnd ? ptimeToDateTime(*params.endTimeTrgEnd) : emptyTime,
+        params.endTimeTrgEnd ? ptimeToDateTime(*params.endTimeTrgEnd) : emptyTime,  
         params.startTimeO2End ? ptimeToDateTime(*params.startTimeO2End) : emptyTime,
         params.endTimeO2End ? ptimeToDateTime(*params.endTimeO2End) : emptyTime,
         params.activityId,
         params.runType ? runTypeToString(*params.runType) : emptyString,
         params.runQuality ? runQualityToString(*params.runQuality) : emptyString);
 
-    std::shared_ptr<io::swagger::client::model::Object> result = taskRunsGet.get();
+    std::shared_ptr<org::openapitools::client::model::Object> result = taskRunsGet.get();
     std::vector<Run> runs;
     if (result) {
         auto data = result->getValue("data");
@@ -204,8 +204,8 @@ std::vector<Run> JiskefetApi::getRuns(const GetRunsParameters& params)
 
 int64_t JiskefetApi::createLog(const CreateLogParameters& params)
 {
-    io::swagger::client::api::LogsApi api(apiClient);
-    auto dto = std::make_shared<io::swagger::client::model::CreateLogDto>();
+    org::openapitools::client::api::LogsApi api(apiClient);
+    auto dto = std::make_shared<org::openapitools::client::model::CreateLogDto>();
     dto->setSubtype(logSubtypeToString(params.subtype));
     dto->setOrigin(logOriginToString(params.origin));
     dto->setTitle(params.title);
@@ -223,7 +223,7 @@ int64_t JiskefetApi::createLog(const CreateLogParameters& params)
         [](int32_t x){return std::to_string(x);});
     dto->setRuns(runIds);
 
-    std::shared_ptr<io::swagger::client::model::Log> result = api.logsPost(dto).get();
+    std::shared_ptr<org::openapitools::client::model::Log> result = api.logsPost(dto).get();
     // TODO check if result is OK and return log ID
     return result->getLogId();
 }
