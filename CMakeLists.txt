@@ -33,7 +33,7 @@ set(SOURCE_FILES
     src/cpprest-client/ModelBase.cpp
     src/cpprest-client/MultipartFormData.cpp
     src/cpprest-client/Object.cpp
-    src/cpprest-client/api/AttachmentsApi.cpp
+    src/cpprest-client/api/AttachmentApi.cpp
     src/cpprest-client/api/DefaultApi.cpp
     # src/cpprest-client/api/AuthenticationApi.cpp
     src/cpprest-client/api/FlpApi.cpp
@@ -137,12 +137,12 @@ target_compile_features(
     PUBLIC
     cxx_std_17)
 
-# add_executable(
-#     jiskefet-api-cpp-example
-#     src/Example.cpp)
+add_executable(
+    jiskefet-api-cpp-example
+    src/Example.cpp)
 
 target_link_libraries(
-    # jiskefet-api-cpp-example 
+    jiskefet-api-cpp-example 
     PRIVATE
     ${PROJECT_NAME})
 
@@ -151,7 +151,7 @@ target_link_libraries(
 set(CMAKE_INSTALL_LIBDIR lib)
 
 install(
-    # TARGETS jiskefet-api-cpp-example JiskefetApiCpp
+    TARGETS jiskefet-api-cpp-example JiskefetApiCpp
     EXPORT JiskefetApiCppTargets
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
