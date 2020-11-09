@@ -82,7 +82,7 @@ java -jar modules/openapi-generator-cli/target/openapi-generator-cli.jar generat
   -g java \
   -o samples/client/petstore/java/okhttp-gson   
 
-java -jar openapi-generator-cli.jar generate -i openapi.yaml -g cpp-restsdk -o cpprest
+java -jar openapi-generator-cli.jar generate -i openapi-source.yaml -g cpp-restsdk -o cpprest
 
 
 ### Additional work

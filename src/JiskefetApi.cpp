@@ -105,12 +105,12 @@ void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
     run->setRunNumber(runNumber);
     run->setTimeO2Start(ptimeToDateTime(o2Start));
     run->setTimeTrgStart(ptimeToDateTime(triggerStart));
-    // dto->setRunType(std::make_shared<org::openapitools::client::model::RunType>(runType));
+    // run->setRunType(std::make_shared<org::openapitools::client::model::RunType>(runType));
     run->setActivityId(activityId);
     run->setNDetectors(nDetectors);
     run->setNFlps(nFlps);
     run->setNEpns(nEpns);
-    runApi.createRun(run);
+    runApi.createRun(run).get();
 }
 
 // void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
