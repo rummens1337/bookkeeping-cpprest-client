@@ -23,9 +23,8 @@
 
 #include "ArrayOfRunsResponse.h"
 #include "Errors.h"
-#include "PaginationOptions.h"
+#include "Run.h"
 #include "RunResponse.h"
-#include "RunSortOptions.h"
 
 
 #include <boost/optional.hpp>
@@ -48,6 +47,16 @@ public:
     virtual ~RunApi();
 
     /// <summary>
+    /// Creates a run
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="run"></param>
+    pplx::task<std::shared_ptr<RunResponse>> createRun(
+        std::shared_ptr<Run> run
+    ) const;
+    /// <summary>
     /// Gets a run by Id
     /// </summary>
     /// <remarks>
@@ -63,11 +72,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="page">Specifies the pagination requirements. (optional, default to new PaginationOptions())</param>
-    /// <param name="sort">Specifies the run sorting requirements. (optional, default to new RunSortOptions())</param>
     pplx::task<std::shared_ptr<ArrayOfRunsResponse>> listRuns(
-        boost::optional<std::shared_ptr<PaginationOptions>> page,
-        boost::optional<std::shared_ptr<RunSortOptions>> sort
     ) const;
 
 protected:

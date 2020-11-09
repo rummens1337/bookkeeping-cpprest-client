@@ -107,6 +107,7 @@ set(SOURCE_FILES
     src/cpprest-client/model/Tag.cpp
     src/cpprest-client/model/TagResponse.cpp
     src/cpprest-client/model/User.cpp
+    src/JiskefetApi.cpp
     src/JiskefetFactory.cpp)
 
 add_library(

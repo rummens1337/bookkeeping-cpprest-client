@@ -74,6 +74,16 @@ docker run --rm \
 2. Under the "Generate Client" menu, select "cpprest"
 3. Extract the archive under `src/cpprest-client` (note: as the API changes, it's possible some old classes/files will no longer be present, so you might want to clean up the directory before extracting)
 
+### OpenAPI 3.0 (TODO: Edit)
+https://github.com/OpenAPITools/openapi-generator
+
+java -jar modules/openapi-generator-cli/target/openapi-generator-cli.jar generate \
+  -i https://raw.githubusercontent.com/openapitools/openapi-generator/master/modules/openapi-generator/src/test/resources/3_0/petstore.yaml \
+  -g java \
+  -o samples/client/petstore/java/okhttp-gson   
+
+java -jar openapi-generator-cli.jar generate -i openapi.yaml -g cpp-restsdk -o cpprest
+
 
 ### Additional work
 At this point, it still needs some work, however.

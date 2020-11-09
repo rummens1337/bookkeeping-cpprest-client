@@ -27,11 +27,8 @@
 #include "AttachmentResponse.h"
 #include "CreateLog.h"
 #include "Errors.h"
-#include "FilterLogsOptions.h"
 #include "LogResponse.h"
-#include "LogSortOptions.h"
 #include "LogTreeResponse.h"
-#include "PaginationOptions.h"
 
 
 #include <boost/optional.hpp>
@@ -111,13 +108,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="page">Specifies the pagination requirements. (optional, default to new PaginationOptions())</param>
-    /// <param name="filter">Specifies the filter requirements. (optional, default to new FilterLogsOptions())</param>
-    /// <param name="sort">Specifies the log sorting requirements. (optional, default to new LogSortOptions())</param>
     pplx::task<std::shared_ptr<ArrayOfLogsResponse>> listLogs(
-        boost::optional<std::shared_ptr<PaginationOptions>> page,
-        boost::optional<std::shared_ptr<FilterLogsOptions>> filter,
-        boost::optional<std::shared_ptr<LogSortOptions>> sort
     ) const;
     /// <summary>
     /// Lists all tags associated with a log

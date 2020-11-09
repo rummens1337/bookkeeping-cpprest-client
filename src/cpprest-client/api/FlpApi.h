@@ -24,8 +24,6 @@
 #include "ArrayOfFlpsResponse.h"
 #include "Errors.h"
 #include "FlpResponse.h"
-#include "FlpSortOptions.h"
-#include "PaginationOptions.h"
 
 
 #include <boost/optional.hpp>
@@ -63,11 +61,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="page">Specifies the pagination requirements. (optional, default to new PaginationOptions())</param>
-    /// <param name="sort">Specifies the flp sorting requirements. (optional, default to new FlpSortOptions())</param>
     pplx::task<std::shared_ptr<ArrayOfFlpsResponse>> listFlps(
-        boost::optional<std::shared_ptr<PaginationOptions>> page,
-        boost::optional<std::shared_ptr<FlpSortOptions>> sort
     ) const;
 
 protected:

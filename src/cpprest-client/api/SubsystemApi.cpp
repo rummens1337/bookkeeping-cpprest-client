@@ -438,7 +438,7 @@ pplx::task<std::shared_ptr<SubsystemResponse>> SubsystemApi::getSubsystem(int64_
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ArrayOfSubsystemsResponse>> SubsystemApi::listSubsystems(boost::optional<std::shared_ptr<PaginationOptions>> page) const
+pplx::task<std::shared_ptr<ArrayOfSubsystemsResponse>> SubsystemApi::listSubsystems() const
 {
 
 
@@ -479,10 +479,6 @@ pplx::task<std::shared_ptr<ArrayOfSubsystemsResponse>> SubsystemApi::listSubsyst
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (page && *page != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

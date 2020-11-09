@@ -565,7 +565,7 @@ pplx::task<std::shared_ptr<TagResponse>> TagApi::getTagById(int64_t tagId) const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ArrayOfTagsResponse>> TagApi::listTags(boost::optional<std::shared_ptr<PaginationOptions>> page) const
+pplx::task<std::shared_ptr<ArrayOfTagsResponse>> TagApi::listTags() const
 {
 
 
@@ -606,10 +606,6 @@ pplx::task<std::shared_ptr<ArrayOfTagsResponse>> TagApi::listTags(boost::optiona
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (page && *page != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

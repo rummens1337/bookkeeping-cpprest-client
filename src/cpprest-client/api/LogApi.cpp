@@ -693,7 +693,7 @@ pplx::task<std::shared_ptr<ArrayOfAttachmentsResponse>> LogApi::listLogAttachmen
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ArrayOfLogsResponse>> LogApi::listLogs(boost::optional<std::shared_ptr<PaginationOptions>> page, boost::optional<std::shared_ptr<FilterLogsOptions>> filter, boost::optional<std::shared_ptr<LogSortOptions>> sort) const
+pplx::task<std::shared_ptr<ArrayOfLogsResponse>> LogApi::listLogs() const
 {
 
 
@@ -734,18 +734,6 @@ pplx::task<std::shared_ptr<ArrayOfLogsResponse>> LogApi::listLogs(boost::optiona
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (page && *page != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
-    }
-    if (filter && *filter != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("filter")] = ApiClient::parameterToString(*filter);
-    }
-    if (sort && *sort != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("sort")] = ApiClient::parameterToString(*sort);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

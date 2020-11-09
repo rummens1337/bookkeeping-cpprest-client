@@ -162,7 +162,7 @@ pplx::task<std::shared_ptr<FlpResponse>> FlpApi::getFlpById(int64_t flpId) const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<ArrayOfFlpsResponse>> FlpApi::listFlps(boost::optional<std::shared_ptr<PaginationOptions>> page, boost::optional<std::shared_ptr<FlpSortOptions>> sort) const
+pplx::task<std::shared_ptr<ArrayOfFlpsResponse>> FlpApi::listFlps() const
 {
 
 
@@ -203,14 +203,6 @@ pplx::task<std::shared_ptr<ArrayOfFlpsResponse>> FlpApi::listFlps(boost::optiona
 
     std::unordered_set<utility::string_t> localVarConsumeHttpContentTypes;
 
-    if (page && *page != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("page")] = ApiClient::parameterToString(*page);
-    }
-    if (sort && *sort != nullptr)
-    {
-        localVarQueryParams[utility::conversions::to_string_t("sort")] = ApiClient::parameterToString(*sort);
-    }
 
     std::shared_ptr<IHttpBody> localVarHttpBody;
     utility::string_t localVarRequestHttpContentType;

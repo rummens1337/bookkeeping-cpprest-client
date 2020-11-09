@@ -25,7 +25,6 @@
 #include "ArrayOfTagsResponse.h"
 #include "CreateTag.h"
 #include "Errors.h"
-#include "PaginationOptions.h"
 #include "TagResponse.h"
 
 
@@ -94,9 +93,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="page">Specifies the pagination requirements. (optional, default to new PaginationOptions())</param>
     pplx::task<std::shared_ptr<ArrayOfTagsResponse>> listTags(
-        boost::optional<std::shared_ptr<PaginationOptions>> page
     ) const;
 
 protected:

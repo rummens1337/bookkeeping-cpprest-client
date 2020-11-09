@@ -24,7 +24,6 @@
 #include "ArrayOfSubsystemsResponse.h"
 #include "CreateSubsystem.h"
 #include "Errors.h"
-#include "PaginationOptions.h"
 #include "SubsystemResponse.h"
 
 
@@ -83,9 +82,7 @@ public:
     /// <remarks>
     /// 
     /// </remarks>
-    /// <param name="page">Specifies the pagination requirements. (optional, default to new PaginationOptions())</param>
     pplx::task<std::shared_ptr<ArrayOfSubsystemsResponse>> listSubsystems(
-        boost::optional<std::shared_ptr<PaginationOptions>> page
     ) const;
 
 protected:

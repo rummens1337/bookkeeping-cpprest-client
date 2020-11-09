@@ -40,3 +40,6 @@ cmake_install.cmake
 
 # IDE files
 .vscode*
+
+# Build files
+jiskefet-api-cpp-example
