@@ -57,6 +57,18 @@ public:
         std::shared_ptr<Run> run
     ) const;
     /// <summary>
+    /// Updates certain fields of a run
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="runId">The id of the run to retrieve</param>
+    /// <param name="run"></param>
+    pplx::task<std::shared_ptr<RunResponse>> endRun(
+        int64_t runId,
+        std::shared_ptr<Run> run
+    ) const;
+    /// <summary>
     /// Gets a run by Id
     /// </summary>
     /// <remarks>

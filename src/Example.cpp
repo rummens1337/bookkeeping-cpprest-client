@@ -50,10 +50,10 @@ int main(int argc, char const *argv[])
         // std::cout << "Updating FLPs" << std::endl;
         // api->flpUpdateCounters(runNumber, "flp-1", 234, 323408, 6834, 9292);
         
-        // std::cout << "Ending run" << std::endl;
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
-        // now = boost::posix_time::microsec_clock::universal_time();
-        // api->runEnd(runNumber, now, now, RunQuality::UNKNOWN);
+        std::cout << "Ending run" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        now = boost::posix_time::microsec_clock::universal_time();
+        api->runEnd(runNumber, now, now, RunQuality::UNKNOWN);
 
 
 

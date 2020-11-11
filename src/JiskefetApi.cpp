@@ -57,6 +57,20 @@ const std::shared_ptr<org::openapitools::client::model::RunType> runTypeToActual
     return std::make_shared<org::openapitools::client::model::RunType>(*actualRunType);
 }
 
+const std::shared_ptr<org::openapitools::client::model::RunQuality> runQualityToActualRunQuality(RunQuality runQuality) {
+    const auto actualRunQuality = new org::openapitools::client::model::RunQuality();
+    switch (runQuality) {
+        case RunQuality::GOOD: actualRunQuality->setValue(org::openapitools::client::model::RunQuality::eRunQuality::RunQuality_GOOD);
+            break;
+        case RunQuality::BAD: actualRunQuality->setValue(org::openapitools::client::model::RunQuality::eRunQuality::RunQuality_BAD);
+            break;
+        case RunQuality::UNKNOWN: actualRunQuality->setValue(org::openapitools::client::model::RunQuality::eRunQuality::RunQuality_UNKNOWN);
+            break;
+        default: throw std::runtime_error("Unknown RunQuality enum value");
+    }
+    return std::make_shared<org::openapitools::client::model::RunQuality>(*actualRunQuality);
+}
+
 std::string runQualityToString(RunQuality runQuality) {
     switch (runQuality) {
         case RunQuality::GOOD: return "GOOD";
@@ -119,16 +133,16 @@ void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
     runApi.createRun(run).get();
 }
 
-// void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
-//       RunQuality runQuality)
-// {
-//     org::openapitools::client::api::RunApi runApi(apiClient);
-//     auto dto = std::make_shared<org::openapitools::client::model::Run>();
-//     dto->setTimeO2End(ptimeToDateTime(o2End));
-//     dto->setTimeTrgEnd(ptimeToDateTime(triggerEnd));
-//     dto->setRunQuality(runQualityToString(runQuality));
-//     runApi.runsIdPatch(dto, runNumber).get();
-// }
+void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
+      RunQuality runQuality)
+{
+    org::openapitools::client::api::RunApi runApi(apiClient);
+    auto run = std::make_shared<org::openapitools::client::model::Run>();
+    run->setTimeO2End(ptimeToDateTime(o2End));
+    run->setTimeTrgEnd(ptimeToDateTime(triggerEnd));
+    run->setRunQuality(runQualityToActualRunQuality(runQuality));
+    runApi.endRun(runNumber, run).get();
+}
 
 // void JiskefetApi::flpAdd(int64_t runNumber, std::string flpName, std::string hostName)
 // {

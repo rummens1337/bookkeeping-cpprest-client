@@ -254,6 +254,22 @@ paths:
           $ref: '#/components/responses/UnexpectedError'
       tags:
         - run
+    patch:
+      operationId: endRun
+      summary: Updates certain fields of a run
+      requestBody:
+        $ref: '#/components/requestBodies/EndRun'
+      responses:
+        '201':
+          $ref: '#/components/responses/Run'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        default:
+          $ref: '#/components/responses/UnexpectedError'
+      tags:
+        - run
   /status:
     get:
       operationId: getDeployInformation
@@ -492,6 +508,12 @@ components:
         $ref: '#/components/schemas/EntityId'
   requestBodies:
     CreateRun:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Run'
+    EndRun:
       required: true
       content:
         application/json:

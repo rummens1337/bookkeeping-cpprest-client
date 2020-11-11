@@ -39,14 +39,14 @@ class JiskefetInterface {
     virtual void runStart(int64_t runNumber, boost::posix_time::ptime o2Start, boost::posix_time::ptime triggerStart,
       utility::string_t activityId, RunType runType, int64_t nDetectors, int64_t nFlps, int64_t nEpns) = 0;
 
-    // /// Ends a run
-    // ///
-    // /// @param runNumber Integer ID of a specific data taking session.
-    // /// @param o2End Time (UTC) when Run was completely stopped.
-    // /// @param triggerEnd (UTC) Time when Trigger subsystem was stopped.
-    // /// @param runQuality Overall quality of the data from O2 point of view.
-    // virtual void runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
-    //   RunQuality runQuality) = 0;
+    /// Ends a run
+    ///
+    /// @param runNumber Integer ID of a specific data taking session.
+    /// @param o2End Time (UTC) when Run was completely stopped.
+    /// @param triggerEnd (UTC) Time when Trigger subsystem was stopped.
+    /// @param runQuality Overall quality of the data from O2 point of view.
+    virtual void runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
+      RunQuality runQuality) = 0;
 
     // /// Adds an FLP to a run
     // ///
