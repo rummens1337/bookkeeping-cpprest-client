@@ -43,13 +43,18 @@ std::string logOriginToString(LogOrigin logOrigin) {
     }
 }
 
-std::string runTypeToString(RunType runType) {
+const std::shared_ptr<org::openapitools::client::model::RunType> runTypeToActualRunType(RunType runType) {
+    const auto actualRunType = new org::openapitools::client::model::RunType();
     switch (runType) {
-        case RunType::PHYSICS: return "PHYSICS";
-        case RunType::COSMICS: return "COSMICS";
-        case RunType::TECHNICAL: return "TECHNICAL";
+        case RunType::PHYSICS: actualRunType->setValue(org::openapitools::client::model::RunType::eRunType::RunType_PHYSICS);
+            break;
+        case RunType::COSMICS: actualRunType->setValue(org::openapitools::client::model::RunType::eRunType::RunType_COSMICS);
+            break;
+        case RunType::TECHNICAL: actualRunType->setValue(org::openapitools::client::model::RunType::eRunType::RunType_TECHNICAL);
+            break;
         default: throw std::runtime_error("Unknown RunType enum value");
-    }    
+    }
+    return std::make_shared<org::openapitools::client::model::RunType>(*actualRunType);
 }
 
 std::string runQualityToString(RunQuality runQuality) {
@@ -96,6 +101,7 @@ JiskefetApi::JiskefetApi(std::string url, std::string token)
     apiClient->setConfiguration(apiConfiguration);
 }
 
+
 void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
       boost::posix_time::ptime triggerStart, utility::string_t activityId, 
       RunType runType, int64_t nDetectors, int64_t nFlps, int64_t nEpns) 
@@ -105,7 +111,7 @@ void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
     run->setRunNumber(runNumber);
     run->setTimeO2Start(ptimeToDateTime(o2Start));
     run->setTimeTrgStart(ptimeToDateTime(triggerStart));
-    // run->setRunType(std::make_shared<org::openapitools::client::model::RunType>(runType));
+    run->setRunType(runTypeToActualRunType(runType));
     run->setActivityId(activityId);
     run->setNDetectors(nDetectors);
     run->setNFlps(nFlps);
