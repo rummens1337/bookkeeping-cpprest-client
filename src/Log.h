@@ -5,7 +5,7 @@
 #include "LogOrigin.h"
  
 
-namespace jiskefet
+namespace bookkeeping
 {
 struct Log
 {

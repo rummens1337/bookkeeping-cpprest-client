@@ -42,4 +42,4 @@ cmake_install.cmake
 .vscode*
 
 # Build files
-jiskefet-api-cpp-example
+bookkeeping-api-cpp-example

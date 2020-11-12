@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace jiskefet
+namespace bookkeeping
 {
 enum class OrderDirection {
     ASC, DESC

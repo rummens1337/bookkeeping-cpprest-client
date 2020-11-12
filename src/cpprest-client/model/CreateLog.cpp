@@ -30,6 +30,7 @@ CreateLog::CreateLog()
     m_TextIsSet = false;
     m_Title = utility::conversions::to_string_t("");
     m_TitleIsSet = false;
+    m_RunNumbers = utility::conversions::to_string_t("");
     m_RunNumbersIsSet = false;
 }
 
@@ -120,7 +121,7 @@ bool CreateLog::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("runNumbers"));
         if(!fieldValue.is_null())
         {
-            std::vector<int64_t> refVal_runNumbers;
+            utility::string_t refVal_runNumbers;
             ok &= ModelBase::fromJson(fieldValue, refVal_runNumbers);
             setRunNumbers(refVal_runNumbers);
         }
@@ -192,7 +193,7 @@ bool CreateLog::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, cons
     }
     if(multipart->hasContent(utility::conversions::to_string_t("runNumbers")))
     {
-        std::vector<int64_t> refVal_runNumbers;
+        utility::string_t refVal_runNumbers;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("runNumbers")), refVal_runNumbers );
         setRunNumbers(refVal_runNumbers);
     }
@@ -279,12 +280,12 @@ void CreateLog::unsetTitle()
 {
     m_TitleIsSet = false;
 }
-std::vector<int64_t>& CreateLog::getRunNumbers()
+utility::string_t CreateLog::getRunNumbers() const
 {
     return m_RunNumbers;
 }
 
-void CreateLog::setRunNumbers(std::vector<int64_t> value)
+void CreateLog::setRunNumbers(const utility::string_t& value)
 {
     m_RunNumbers = value;
     m_RunNumbersIsSet = true;

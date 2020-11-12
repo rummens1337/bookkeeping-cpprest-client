@@ -92,13 +92,13 @@ public:
     void setTitle(const utility::string_t& value);
 
     /// <summary>
-    /// A list of run numbers
+    /// A serialized string of run numbers
     /// </summary>
-    std::vector<int64_t>& getRunNumbers();
+    utility::string_t getRunNumbers() const;
     bool runNumbersIsSet() const;
     void unsetRunNumbers();
 
-    void setRunNumbers(std::vector<int64_t> value);
+    void setRunNumbers(const utility::string_t& value);
 
 
 protected:
@@ -110,7 +110,7 @@ protected:
     bool m_TextIsSet;
     utility::string_t m_Title;
     bool m_TitleIsSet;
-    std::vector<int64_t> m_RunNumbers;
+    utility::string_t m_RunNumbers;
     bool m_RunNumbersIsSet;
 };
 

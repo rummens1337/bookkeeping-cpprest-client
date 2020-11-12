@@ -5,7 +5,7 @@
 #include "LogSubtype.h"
 #include "LogOrigin.h"
 
-namespace jiskefet
+namespace bookkeeping
 {
 struct CreateLogParameters
 {

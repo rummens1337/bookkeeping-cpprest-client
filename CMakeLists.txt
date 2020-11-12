@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.2 FATAL_ERROR)
 
 project(
-    JiskefetApiCpp
+    BookkeepingApiCpp
     VERSION 0.3.3
     LANGUAGES CXX)
 
@@ -107,15 +107,15 @@ set(SOURCE_FILES
     src/cpprest-client/model/Tag.cpp
     src/cpprest-client/model/TagResponse.cpp
     src/cpprest-client/model/User.cpp
-    src/JiskefetApi.cpp
-    src/JiskefetFactory.cpp)
+    src/BookkeepingApi.cpp
+    src/BookkeepingFactory.cpp)
 
 add_library(
     ${PROJECT_NAME}
     ${SOURCE_FILES})
 
 target_include_directories(
-    JiskefetApiCpp
+    BookkeepingApiCpp
     PUBLIC
     $<INSTALL_INTERFACE:include>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/cpprest-client>
@@ -126,7 +126,7 @@ target_include_directories(
     ${OPENSSL_INCLUDE_DIR})
 
 target_link_libraries(
-    JiskefetApiCpp
+    BookkeepingApiCpp
     PRIVATE
     ${CPPREST_LIBRARIES} 
     ${Boost_LIBRARIES} 
@@ -139,11 +139,11 @@ target_compile_features(
     cxx_std_17)
 
 add_executable(
-    jiskefet-api-cpp-example
+    bookkeeping-api-cpp-example
     src/Example.cpp)
 
 target_link_libraries(
-    jiskefet-api-cpp-example 
+    bookkeeping-api-cpp-example 
     PRIVATE
     ${PROJECT_NAME})
 
@@ -152,39 +152,39 @@ target_link_libraries(
 set(CMAKE_INSTALL_LIBDIR lib)
 
 install(
-    TARGETS jiskefet-api-cpp-example JiskefetApiCpp
-    EXPORT JiskefetApiCppTargets
+    TARGETS bookkeeping-api-cpp-example BookkeepingApiCpp
+    EXPORT BookkeepingApiCppTargets
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 install(
-    EXPORT JiskefetApiCppTargets
-    FILE JiskefetApiCppTargets.cmake
-    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/JiskefetApiCpp")
+    EXPORT BookkeepingApiCppTargets
+    FILE BookkeepingApiCppTargets.cmake
+    DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/BookkeepingApiCpp")
 
 install(
     DIRECTORY src/
-    DESTINATION include/JiskefetApiCpp
+    DESTINATION include/BookkeepingApiCpp
     FILES_MATCHING PATTERN "*.h")
 
 # Configure and install package config files
 include(CMakePackageConfigHelpers)
 
 write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/JiskefetApiCppConfigVersion.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/BookkeepingApiCppConfigVersion.cmake"
     VERSION ${PACKAGE_VERSION}
     COMPATIBILITY AnyNewerVersion)
 
 configure_package_config_file(
-    cmake/JiskefetApiCppConfig.cmake.in 
-    cmake/JiskefetApiCppConfig.cmake
-    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/JiskefetApiCpp"
+    cmake/BookkeepingApiCppConfig.cmake.in 
+    cmake/BookkeepingApiCppConfig.cmake
+    INSTALL_DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/BookkeepingApiCpp"
     PATH_VARS CMAKE_INSTALL_PREFIX)
 
 install(
     FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/JiskefetApiCppConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/JiskefetApiCppConfigVersion.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/BookkeepingApiCppConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/BookkeepingApiCppConfigVersion.cmake"
     DESTINATION
-    ${CMAKE_INSTALL_LIBDIR}/cmake/JiskefetApiCpp)
+    ${CMAKE_INSTALL_LIBDIR}/cmake/BookkeepingApiCpp)

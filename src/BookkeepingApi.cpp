@@ -1,4 +1,4 @@
-#include "JiskefetApi.h"
+#include "BookkeepingApi.h"
 #include <algorithm>
 #include <boost/date_time/posix_time/ptime.hpp>
 #include <boost/date_time/posix_time/time_parsers.hpp>
@@ -11,7 +11,7 @@
 #include "cpprest-client/model/RunType.h"
 
 
-namespace jiskefet
+namespace bookkeeping
 {
 
 namespace
@@ -105,18 +105,18 @@ boost::posix_time::ptime ptimeFromString(std::string t)
 }
 }
 
-JiskefetApi::JiskefetApi(std::string url, std::string token)
+BookkeepingApi::BookkeepingApi(std::string url, std::string token)
 {
     apiClient = std::make_shared<org::openapitools::client::api::ApiClient>();
     auto apiConfiguration = std::make_shared<org::openapitools::client::api::ApiConfiguration>();
     apiConfiguration->setBaseUrl(url);
     apiConfiguration->setApiKey("Authorization", " Bearer " + token);
-    apiConfiguration->setUserAgent("JiskefetCppApi");
+    apiConfiguration->setUserAgent("BookkeepingCppApi");
     apiClient->setConfiguration(apiConfiguration);
 }
 
 
-void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
+void BookkeepingApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
       boost::posix_time::ptime triggerStart, utility::string_t activityId, 
       RunType runType, int64_t nDetectors, int64_t nFlps, int64_t nEpns) 
 {
@@ -133,7 +133,7 @@ void JiskefetApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
     runApi.createRun(run).get();
 }
 
-void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
+void BookkeepingApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
       RunQuality runQuality)
 {
     org::openapitools::client::api::RunApi runApi(apiClient);
@@ -144,7 +144,7 @@ void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boos
     runApi.endRun(runNumber, run).get();
 }
 
-// void JiskefetApi::flpAdd(int64_t runNumber, std::string flpName, std::string hostName)
+// void BookkeepingApi::flpAdd(int64_t runNumber, std::string flpName, std::string hostName)
 // {
 //     org::openapitools::client::api::FlpApi flpApi(apiClient);
 //     auto dto = std::make_shared<org::openapitools::client::model::Flp>();
@@ -154,7 +154,7 @@ void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boos
 //     flpApi.flpPost(dto).get();
 // }
 
-// void JiskefetApi::flpUpdateCounters(int64_t runNumber, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
+// void BookkeepingApi::flpUpdateCounters(int64_t runNumber, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
 //       int64_t nRecordingBytes, int64_t nFairMqBytes)
 // {
 //     org::openapitools::client::api::FlpApi flpApi(apiClient);
@@ -166,7 +166,7 @@ void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boos
 //     flpApi.flpNameRunsIdPatch(dto, flpName, runNumber).get();
 // }
 
-// std::vector<Run> JiskefetApi::getRuns(const GetRunsParameters& params)
+// std::vector<Run> BookkeepingApi::getRuns(const GetRunsParameters& params)
 // {
 //     org::openapitools::client::api::RunApi runsApi(apiClient);
 //     auto emptyString = boost::optional<std::string>();
@@ -223,35 +223,39 @@ void JiskefetApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boos
 //     return runs;
 // }
 
-// int64_t JiskefetApi::createLog(const CreateLogParameters& params)
-// {
-//     org::openapitools::client::api::LogsApi api(apiClient);
-//     auto dto = std::make_shared<org::openapitools::client::model::CreateLogDto>();
-//     dto->setSubtype(logSubtypeToString(params.subtype));
-//     dto->setOrigin(logOriginToString(params.origin));
-//     dto->setTitle(params.title);
-//     dto->setBody(params.text);
+void BookkeepingApi::createLog(utility::string_t text, utility::string_t title, std::vector<std::int64_t> runNumbers, std::int64_t parentLogId)
+{
+    org::openapitools::client::api::LogApi api(apiClient);
+    auto log = std::make_shared<org::openapitools::client::model::CreateLog>();
+    log->setText(text);
+    log->setTitle(title);
+    // log->setRunNumbers("");
+    // log->unsetRunNumbers();
+    // std::cout <<log->getRunNumbers() << std::endl;
+    // log->unsetParentLogId();
+    // log->unsetAttachments();
 
-//     // Not sure how this works...
-//     //dto->setAttachments(???); 
-//     if (params.attachments.size() != 0) {
-//         throw std::runtime_error("JiskefetApi::createLog() attachments not yet supported");
-//     }
+    // Convert to serialized string of run numbers, comma separated.
+    // std::string s;
+    // for(auto const& e : runNumbers) s += std::to_string(e) + ",";
+    // s.pop_back();
+
+    // log->setRunNumbers(s);
+    // if(parentLogId != -1){
+    //     log->setParentLogId(parentLogId);
+    // }
     
-//     // Convert ids from int to string
-//     std::vector<std::string> runIds;
-//     std::transform(params.runIds.begin(), params.runIds.end(), std::back_inserter(runIds), 
-//         [](int32_t x){return std::to_string(x);});
-//     dto->setRuns(runIds);
+    // std::cout << s << std::endl;
+    api.createLog(log).get();
 
-//     std::shared_ptr<org::openapitools::client::model::Log> result = api.logsPost(dto).get();
-//     // TODO check if result is OK and return log ID
-//     return result->getLogId();
-// }
+    // std::shared_ptr<org::openapitools::client::model::Log> result = api.createLog(dto).get();
+    // TODO check if result is OK and return log ID
+    // return result->getLogId();
+}
 
-// std::vector<Log> JiskefetApi::getLogs(const GetLogsParameters& params)
+// std::vector<Log> BookkeepingApi::getLogs(const GetLogsParameters& params)
 // {
-//     throw std::runtime_error("JiskefetApi::getLogs() not yet supported");
+//     throw std::runtime_error("BookkeepingApi::getLogs() not yet supported");
 //     return {};
 // }
 

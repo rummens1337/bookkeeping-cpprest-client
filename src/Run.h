@@ -5,7 +5,7 @@
 #include <boost/date_time/posix_time/ptime.hpp>
 
 
-namespace jiskefet
+namespace bookkeeping
 {
 struct Run
 {

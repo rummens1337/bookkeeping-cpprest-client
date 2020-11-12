@@ -7,7 +7,7 @@
 #include "RunQuality.h"
 
 
-namespace jiskefet
+namespace bookkeeping
 {
 struct GetRunsParameters
 {

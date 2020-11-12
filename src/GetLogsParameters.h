@@ -7,7 +7,7 @@
 #include "OrderDirection.h"
 
 
-namespace jiskefet
+namespace bookkeeping
 {
 struct GetLogsParameters
 {

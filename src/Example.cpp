@@ -1,8 +1,8 @@
 #include <string>
 #include <iostream>
 #include <thread>
-#include "JiskefetFactory.h"
-#include "JiskefetApi.h"
+#include "BookkeepingFactory.h"
+#include "BookkeepingApi.h"
 #include "CreateLogParameters.h"
 
 #include <boost/date_time.hpp>
@@ -21,17 +21,17 @@ std::string getEnvString(const std::string& key)
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "Hello jiskefet-api-cpp!" << std::endl;
-	std::string url = getEnvString("JISKEFET_URL");
-    std::string apiToken = getEnvString("JISKEFET_API_TOKEN");
-    std::cout << "JISKEFET_URL: " << url << '\n'
-        << "JISKEFET_API_TOKEN: " << apiToken << std::endl;
+    std::cout << "Hello Bookkeeping-api-cpp!" << std::endl;
+	std::string url = getEnvString("BOOKKEEPING_URL");
+    std::string apiToken = getEnvString("BOOKKEEPING_API_TOKEN");
+    std::cout << "BOOKKEEPING_URL: " << url << '\n'
+        << "BOOKKEEPING_API_TOKEN: " << apiToken << std::endl;
 
     url = url + "?token=" + apiToken;
     std::cout << url << std::endl;
     const int64_t runNumber = boost::lexical_cast<int64_t>(argv[1]);
 
-    auto api = jiskefet::getApiInstance(url, apiToken);
+    auto api = bookkeeping::getApiInstance(url, apiToken);
 
     
     // Start & end run, with FLPs
@@ -39,6 +39,7 @@ int main(int argc, char const *argv[])
         auto now = boost::posix_time::microsec_clock::universal_time();
         std::cout << "Starting run " << runNumber << std::endl;
         api->runStart(runNumber, now, now, "cpp-api", RunType::TECHNICAL, 123, 200, 100);
+        
         // std::cout << "Adding FLPs" << std::endl;
         // api->flpAdd(runNumber, "flp-1", "localhost");
         // api->flpAdd(runNumber, "flp-2", "localhost");
@@ -50,21 +51,20 @@ int main(int argc, char const *argv[])
         // std::cout << "Updating FLPs" << std::endl;
         // api->flpUpdateCounters(runNumber, "flp-1", 234, 323408, 6834, 9292);
         
+
         std::cout << "Ending run" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
         now = boost::posix_time::microsec_clock::universal_time();
         api->runEnd(runNumber, now, now, RunQuality::UNKNOWN);
 
-
-
         // std::cout << "Creating log" << std::endl;
         // std::this_thread::sleep_for(std::chrono::seconds(1));
         // now = boost::posix_time::microsec_clock::universal_time();
-        // jiskefet::CreateLogParameters parameters = {};
+        // Bookkeeping::CreateLogParameters parameters = {};
         // parameters.title = "lel";
         // parameters.text = "Some good run guys.. :)";
         // parameters.runIds = {18};
-        // api->createLog(parameters);
+        // api->createLog("Some good run guys..", "LoggyTitle");
     }
 
     
@@ -72,10 +72,10 @@ int main(int argc, char const *argv[])
     // return 0; // Disable for now...
     // {
     //     std::cout << "Getting runs" << std::endl;
-    //     jiskefet::GetRunsParameters params;
+    //     Bookkeeping::GetRunsParameters params;
     //     params.pageSize = 3;
-    //     params.orderDirection = jiskefet::OrderDirection::DESC;
-    //     std::vector<jiskefet::Run> runs = api->getRuns(params);
+    //     params.orderDirection = Bookkeeping::OrderDirection::DESC;
+    //     std::vector<Bookkeeping::Run> runs = api->getRuns(params);
     //     for (const auto& run : runs) {
     //         std::cout << "  {\n"
     //         << "    runNumber : " << run.runNumber << '\n'

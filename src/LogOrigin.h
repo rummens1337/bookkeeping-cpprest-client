@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace jiskefet
+namespace bookkeeping
 {
 enum class LogOrigin {
     HUMAN, PROCESS

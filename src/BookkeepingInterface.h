@@ -21,9 +21,9 @@
 #include <iomanip>
 
 
-namespace jiskefet
+namespace bookkeeping
 {
-class JiskefetInterface {
+class BookkeepingInterface {
     public: 
 
     /// Starts a run
@@ -68,11 +68,11 @@ class JiskefetInterface {
 
     // virtual std::vector<Run> getRuns(const GetRunsParameters& parameters) = 0;
 
-    // /// Create a log
-    // /// 
-    // /// @param parameters Parameters for the log.
-    // /// @return The ID of the created log.
-    // virtual int64_t createLog(const CreateLogParameters& parameters) = 0;
+    /// Create a log
+    /// 
+    /// @param parameters Parameters for the log.
+    /// @return The ID of the created log.
+    virtual void createLog(utility::string_t text, utility::string_t title, std::vector<std::int64_t> runNumbers = {}, std::int64_t parentLogId = -1) = 0;
     
     // virtual std::vector<Log> getLogs(const GetLogsParameters& parameters) = 0;
 };
