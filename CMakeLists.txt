@@ -71,6 +71,7 @@ set(SOURCE_FILES
     src/cpprest-client/model/Attachment.cpp
     src/cpprest-client/model/AttachmentResponse.cpp
     src/cpprest-client/model/CreateAttachments.cpp
+    src/cpprest-client/model/CreateFlp.cpp
     src/cpprest-client/model/CreateLog.cpp
     src/cpprest-client/model/CreateSubsystem.cpp
     src/cpprest-client/model/CreateTag.cpp

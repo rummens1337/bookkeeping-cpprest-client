@@ -40,9 +40,9 @@ int main(int argc, char const *argv[])
         std::cout << "Starting run " << runNumber << std::endl;
         api->runStart(runNumber, now, now, "cpp-api", RunType::TECHNICAL, 123, 200, 100);
         
-        // std::cout << "Adding FLPs" << std::endl;
-        // api->flpAdd(runNumber, "flp-1", "localhost");
-        // api->flpAdd(runNumber, "flp-2", "localhost");
+        std::cout << "Adding FLPs" << std::endl;
+        api->flpAdd("flp-1", "localhost");
+        api->flpAdd("flp-2", "localhost", runNumber);
 
         // std::cout << "Updating FLPs" << std::endl;
         // api->flpUpdateCounters(runNumber, "flp-1", 123, 123408, 5834, 9192);
@@ -57,14 +57,11 @@ int main(int argc, char const *argv[])
         now = boost::posix_time::microsec_clock::universal_time();
         api->runEnd(runNumber, now, now, RunQuality::UNKNOWN);
 
-        // std::cout << "Creating log" << std::endl;
-        // std::this_thread::sleep_for(std::chrono::seconds(1));
-        // now = boost::posix_time::microsec_clock::universal_time();
-        // Bookkeeping::CreateLogParameters parameters = {};
-        // parameters.title = "lel";
-        // parameters.text = "Some good run guys.. :)";
-        // parameters.runIds = {18};
-        // api->createLog("Some good run guys..", "LoggyTitle");
+        // todo: add attachments to request
+        std::cout << "Creating log" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        now = boost::posix_time::microsec_clock::universal_time();
+        api->createLog("Porsche 911..", "LoggyTitle", {1,5,6}, 1);
     }
 
     

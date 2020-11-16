@@ -48,12 +48,12 @@ class BookkeepingInterface {
     virtual void runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
       RunQuality runQuality) = 0;
 
-    // /// Adds an FLP to a run
-    // ///
-    // /// @param runNumber Integer ID of a specific data taking session.
-    // /// @param flpName Identifying name of the FLP.
-    // /// @param hostName Host name of the FLP.
-    // virtual void flpAdd(int64_t runNumber, std::string flpName, std::string hostName) = 0;
+    /// Adds an FLP to a run
+    ///
+    /// @param runNumber Integer ID of a specific data taking session.
+    /// @param flpName Identifying name of the FLP.
+    /// @param hostName Host name of the FLP.
+    virtual void flpAdd(std::string flpName, std::string hostName, int64_t runNumber = -1) = 0;
     
     // /// Updates the counters of an FLP
     // ///

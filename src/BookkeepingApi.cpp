@@ -144,15 +144,20 @@ void BookkeepingApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, b
     runApi.endRun(runNumber, run).get();
 }
 
-// void BookkeepingApi::flpAdd(int64_t runNumber, std::string flpName, std::string hostName)
-// {
-//     org::openapitools::client::api::FlpApi flpApi(apiClient);
-//     auto dto = std::make_shared<org::openapitools::client::model::Flp>();
-//     dto->set(runNumber);
-//     dto->setName(flpName);
-//     dto->setHostname(hostName);
-//     flpApi.flpPost(dto).get();
-// }
+void BookkeepingApi::flpAdd(std::string flpName, std::string hostName, int64_t runNumber)
+{
+    org::openapitools::client::api::FlpApi flpApi(apiClient);
+    auto flp = std::make_shared<org::openapitools::client::model::CreateFlp>();
+
+    if(runNumber != -1)
+    {
+        flp->setRunNumber(runNumber);
+    }
+    
+    flp->setName(flpName);
+    flp->setHostname(hostName);
+    flpApi.createFlp(flp).get();
+}
 
 // void BookkeepingApi::flpUpdateCounters(int64_t runNumber, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
 //       int64_t nRecordingBytes, int64_t nFairMqBytes)
@@ -229,28 +234,19 @@ void BookkeepingApi::createLog(utility::string_t text, utility::string_t title, 
     auto log = std::make_shared<org::openapitools::client::model::CreateLog>();
     log->setText(text);
     log->setTitle(title);
-    // log->setRunNumbers("");
-    // log->unsetRunNumbers();
-    // std::cout <<log->getRunNumbers() << std::endl;
-    // log->unsetParentLogId();
-    // log->unsetAttachments();
 
     // Convert to serialized string of run numbers, comma separated.
-    // std::string s;
-    // for(auto const& e : runNumbers) s += std::to_string(e) + ",";
-    // s.pop_back();
+    std::string s = "";
+    for(auto const& e : runNumbers) s += std::to_string(e) + ",";
+    s.pop_back();
+    log->setRunNumbers(s);
 
-    // log->setRunNumbers(s);
-    // if(parentLogId != -1){
-    //     log->setParentLogId(parentLogId);
-    // }
+    if(parentLogId != -1){
+        log->setParentLogId(parentLogId);
+    }
     
-    // std::cout << s << std::endl;
+    std::cout << s << std::endl;
     api.createLog(log).get();
-
-    // std::shared_ptr<org::openapitools::client::model::Log> result = api.createLog(dto).get();
-    // TODO check if result is OK and return log ID
-    // return result->getLogId();
 }
 
 // std::vector<Log> BookkeepingApi::getLogs(const GetLogsParameters& params)

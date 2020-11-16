@@ -22,8 +22,10 @@
 #include "../ApiClient.h"
 
 #include "ArrayOfFlpsResponse.h"
+#include "CreateFlp.h"
 #include "Errors.h"
 #include "FlpResponse.h"
+#include "LogResponse.h"
 
 
 #include <boost/optional.hpp>
@@ -45,6 +47,16 @@ public:
 
     virtual ~FlpApi();
 
+    /// <summary>
+    /// Adds a new flp
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="createFlp"></param>
+    pplx::task<std::shared_ptr<LogResponse>> createFlp(
+        std::shared_ptr<CreateFlp> createFlp
+    ) const;
     /// <summary>
     /// Gets a flp by Id
     /// </summary>
