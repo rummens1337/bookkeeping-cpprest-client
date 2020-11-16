@@ -26,6 +26,7 @@
 #include "Errors.h"
 #include "FlpResponse.h"
 #include "LogResponse.h"
+#include "UpdateFlp.h"
 
 
 #include <boost/optional.hpp>
@@ -74,6 +75,18 @@ public:
     /// 
     /// </remarks>
     pplx::task<std::shared_ptr<ArrayOfFlpsResponse>> listFlps(
+    ) const;
+    /// <summary>
+    /// Update an existing flp
+    /// </summary>
+    /// <remarks>
+    /// 
+    /// </remarks>
+    /// <param name="flpId">The id of the flp to retrieve</param>
+    /// <param name="updateFlp"></param>
+    pplx::task<std::shared_ptr<FlpResponse>> updateFlp(
+        int64_t flpId,
+        std::shared_ptr<UpdateFlp> updateFlp
     ) const;
 
 protected:
