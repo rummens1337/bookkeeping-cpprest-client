@@ -91,11 +91,11 @@ public:
     /// <summary>
     /// Total data volume out from the readout &#39;fmq&#39; component in bytes. Can reach PetaBytes. Updated regularly.
     /// </summary>
-    int64_t getBytesFairMqReadOut() const;
-    bool bytesFairMqReadOutIsSet() const;
-    void unsetBytesFairMqReadOut();
+    int64_t getBytesFairMQReadOut() const;
+    bool bytesFairMQReadOutIsSet() const;
+    void unsetBytesFairMQReadOut();
 
-    void setBytesFairMqReadOut(int64_t value);
+    void setBytesFairMQReadOut(int64_t value);
 
 
 protected:
@@ -107,8 +107,8 @@ protected:
     bool m_BytesEquipmentReadOutIsSet;
     int64_t m_BytesRecordingReadOut;
     bool m_BytesRecordingReadOutIsSet;
-    int64_t m_BytesFairMqReadOut;
-    bool m_BytesFairMqReadOutIsSet;
+    int64_t m_BytesFairMQReadOut;
+    bool m_BytesFairMQReadOutIsSet;
 };
 
 

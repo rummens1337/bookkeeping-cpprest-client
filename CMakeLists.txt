@@ -108,6 +108,7 @@ set(SOURCE_FILES
     src/cpprest-client/model/Tag.cpp
     src/cpprest-client/model/TagResponse.cpp
     src/cpprest-client/model/User.cpp
+    src/cpprest-client/model/UpdateFlp.cpp
     src/BookkeepingApi.cpp
     src/BookkeepingFactory.cpp)
 

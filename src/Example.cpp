@@ -44,13 +44,9 @@ int main(int argc, char const *argv[])
         api->flpAdd("flp-1", "localhost");
         api->flpAdd("flp-2", "localhost", runNumber);
 
-        // std::cout << "Updating FLPs" << std::endl;
-        // api->flpUpdateCounters(runNumber, "flp-1", 123, 123408, 5834, 9192);
-        // api->flpUpdateCounters(runNumber, "flp-2", 13, 318, 23, 952);
-        
-        // std::cout << "Updating FLPs" << std::endl;
-        // api->flpUpdateCounters(runNumber, "flp-1", 234, 323408, 6834, 9292);
-        
+        std::cout << "Updating FLPs" << std::endl;
+        api->flpUpdateCounters(1, "flp-1", 123, 123408, 5834, 9192);
+        api->flpUpdateCounters(1, "flp-2", 13, 318, 23, 952);
 
         std::cout << "Ending run" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -64,25 +60,15 @@ int main(int argc, char const *argv[])
         api->createLog("Porsche 911..", "LoggyTitle", {1,5,6}, 1);
     }
 
-    
-    // Get run
-    // return 0; // Disable for now...
-    // {
-    //     std::cout << "Getting runs" << std::endl;
-    //     Bookkeeping::GetRunsParameters params;
-    //     params.pageSize = 3;
-    //     params.orderDirection = Bookkeeping::OrderDirection::DESC;
-    //     std::vector<Bookkeeping::Run> runs = api->getRuns(params);
-    //     for (const auto& run : runs) {
-    //         std::cout << "  {\n"
-    //         << "    runNumber : " << run.runNumber << '\n'
-    //         << "    timeO2Start : " << boost::posix_time::to_iso_extended_string(run.timeO2Start) << '\n'
-    //         << "    runType : " << run.runType << '\n'
-    //         << "    nFlps : " << run.nFlps << '\n'
-    //         << "    bytesReadOut : " << run.bytesReadOut << '\n'
-    //         << "  },\n";
-    //     }
-    // }
+    {
+        std::cout << "Getting runs" << std::endl;
+        auto runs = api->getRuns();
 
+        for (const auto& run : runs) {
+            std::cout << run->toJson() << std::endl;
+        }
+        std::cout << "Amount of runs retrieved: " << runs.size() << std::endl;
+        
+    }
     return 0;
 }

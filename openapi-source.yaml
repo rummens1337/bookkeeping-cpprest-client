@@ -1115,8 +1115,8 @@ components:
       properties:
         bytesEquipmentReadOut:
           $ref: '#/components/schemas/FlpBytesEquipmentReadOut'
-        bytesFairMqReadOut:
-          $ref: '#/components/schemas/FlpBytesFairMqReadOut'
+        bytesFairMQReadOut:
+          $ref: '#/components/schemas/FlpBytesFairMQReadOut'
         bytesProcessed:
           $ref: '#/components/schemas/FlpBytesProcessed'
         bytesRecordingReadOut:
@@ -1141,7 +1141,7 @@ components:
           example: "2018-03-20T09:12:28Z"
       required:
         - bytesEquipmentReadOut
-        - bytesFairMqReadOut
+        - bytesFairMQReadOut
         - bytesProcessed
         - bytesRecordingReadOut
         - hostname
@@ -1155,7 +1155,7 @@ components:
         Can reach PetaBytes. Updated regularly.
       type: integer
       format: int64
-    FlpBytesFairMqReadOut:
+    FlpBytesFairMQReadOut:
       description: >-
         Total data volume out from the readout 'fmq' component in bytes. Can
         reach PetaBytes. Updated regularly.
@@ -1646,8 +1646,8 @@ components:
           $ref: '#/components/schemas/FlpBytesEquipmentReadOut'
         bytesRecordingReadOut:
           $ref: '#/components/schemas/FlpBytesRecordingReadOut'
-        bytesFairMqReadOut:
-          $ref: '#/components/schemas/FlpBytesFairMqReadOut'
+        bytesFairMQReadOut:
+          $ref: '#/components/schemas/FlpBytesFairMQReadOut'
       additionalProperties: false
     User:
       description: Describes an intervention or an event that happened.

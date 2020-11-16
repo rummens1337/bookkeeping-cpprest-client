@@ -153,80 +153,28 @@ void BookkeepingApi::flpAdd(std::string flpName, std::string hostName, int64_t r
     {
         flp->setRunNumber(runNumber);
     }
-    
+
     flp->setName(flpName);
     flp->setHostname(hostName);
     flpApi.createFlp(flp).get();
 }
 
-// void BookkeepingApi::flpUpdateCounters(int64_t runNumber, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
-//       int64_t nRecordingBytes, int64_t nFairMqBytes)
-// {
-//     org::openapitools::client::api::FlpApi flpApi(apiClient);
-//     auto dto = std::make_shared<org::openapitools::client::model::Flp>();
-//     dto->setBytesEquipmentReadOut(nEquipmentBytes);
-//     dto->setBytesFairMqReadOut(nFairMqBytes);
-//     // dto->setNSubTimeframes(nSubtimeframes);
-//     dto->setBytesRecordingReadOut(nRecordingBytes);
-//     flpApi.flpNameRunsIdPatch(dto, flpName, runNumber).get();
-// }
+void BookkeepingApi::flpUpdateCounters(int64_t flpId, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
+      int64_t nRecordingBytes, int64_t nFairMQBytes)
+{
+    org::openapitools::client::api::FlpApi flpApi(apiClient);
+    auto flp = std::make_shared<org::openapitools::client::model::UpdateFlp>();
+    flp->setBytesEquipmentReadOut(nEquipmentBytes);
+    flp->setBytesFairMQReadOut(nFairMQBytes);
+    flp->setNTimeframes(nSubtimeframes);
+    flp->setBytesRecordingReadOut(nRecordingBytes);
+    flpApi.updateFlp(flpId, flp).get();
+}
 
-// std::vector<Run> BookkeepingApi::getRuns(const GetRunsParameters& params)
-// {
-//     org::openapitools::client::api::RunApi runsApi(apiClient);
-//     auto emptyString = boost::optional<std::string>();
-//     auto emptyTime = boost::optional<utility::datetime>();
-//     auto emptyInt = boost::optional<int64_t>();
-
-//     pplx::task<std::shared_ptr<org::openapitools::client::model::Run>> taskRunsGet = runsApi.runsGet(
-//         params.orderBy,
-//         params.orderDirection ? orderDirectionToString(*params.orderDirection) : emptyString,
-//         params.pageSize ? *params.pageSize : emptyInt,
-//         params.pageNumber ? *params.pageNumber : emptyInt,
-//         params.runNumber ? *params.runNumber : emptyInt,
-//         params.startTimeO2Start ? ptimeToDateTime(*params.startTimeO2Start) : emptyTime,
-//         params.endTimeO2Start ? ptimeToDateTime(*params.endTimeO2Start) : emptyTime,
-//         params.startTimeTrgStart ? ptimeToDateTime(*params.startTimeTrgStart) : emptyTime,
-//         params.endTimeTrgStart ? ptimeToDateTime(*params.endTimeTrgStart) : emptyTime,
-//         params.startTimeTrgEnd ? ptimeToDateTime(*params.startTimeTrgEnd) : emptyTime,
-//         params.endTimeTrgEnd ? ptimeToDateTime(*params.endTimeTrgEnd) : emptyTime,  
-//         params.startTimeO2End ? ptimeToDateTime(*params.startTimeO2End) : emptyTime,
-//         params.endTimeO2End ? ptimeToDateTime(*params.endTimeO2End) : emptyTime,
-//         params.activityId,
-//         params.runType ? runTypeToString(*params.runType) : emptyString,
-//         params.runQuality ? runQualityToString(*params.runQuality) : emptyString);
-
-//     std::shared_ptr<org::openapitools::client::model::Run> result = taskRunsGet.get();
-//     std::vector<Run> runs;
-//     if (result) {
-//         auto data = result->getValue("data");
-//         int count = data.at("count").as_integer();
-//         if (count > 0) {
-//             auto runsJson = data.at("runs").as_array();
-//             for (const auto& item : runsJson) {
-//                 const auto& runJson = item.as_object();
-//                 Run run;
-//                 run.runNumber = runJson.at("runNumber").as_number().to_int64();
-//                 run.timeO2Start = ptimeFromString(runJson.at("timeO2Start").as_string());
-//                 run.timeTrgStart = ptimeFromString(runJson.at("timeTrgStart").as_string());
-//                 run.timeO2End = ptimeFromString(runJson.at("timeO2End").as_string());
-//                 run.timeTrgEnd = ptimeFromString(runJson.at("timeTrgEnd").as_string());
-//                 run.runType = runJson.at("runType").as_string();
-//                 run.runQuality = runJson.at("runQuality").as_string();
-//                 run.activityId = runJson.at("activityId").as_string();
-//                 run.nDetectors = runJson.at("nDetectors").as_number().to_int64();
-//                 run.nFlps = runJson.at("nFlps").as_number().to_int64();
-//                 run.nEpns = runJson.at("nEpns").as_number().to_int64();
-//                 run.nTimeframes = runJson.at("nTimeframes").as_number().to_int64();
-//                 run.nSubtimeframes = runJson.at("nSubtimeframes").as_number().to_int64();
-//                 run.bytesReadOut = runJson.at("bytesReadOut").as_number().to_int64();
-//                 run.bytesTimeframeBuilder = runJson.at("bytesTimeframeBuilder").as_number().to_int64();
-//                 runs.push_back(run);
-//             }
-//         }
-//     }
-//     return runs;
-// }
+std::vector<std::shared_ptr<org::openapitools::client::model::Run>> BookkeepingApi::getRuns()
+{
+    return org::openapitools::client::api::RunApi(apiClient).listRuns().get()->getData();
+}
 
 void BookkeepingApi::createLog(utility::string_t text, utility::string_t title, std::vector<std::int64_t> runNumbers, std::int64_t parentLogId)
 {

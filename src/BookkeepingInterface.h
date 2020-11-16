@@ -8,7 +8,7 @@
 #include "LogOrigin.h"
 #include "LogSubtype.h"
 #include "OrderDirection.h"
-#include "Run.h"
+#include "cpprest-client/model/Run.h"
 #include "RunType.h"
 #include "RunQuality.h"
 
@@ -57,16 +57,16 @@ class BookkeepingInterface {
     
     /// Updates the counters of an FLP
     ///
-    /// @param runNumber Integer ID of a specific data taking session.
+    /// @param flpId Integer ID of a specific data taking session.
     /// @param flpName Identifying name of the FLP.
     /// @param nSubtimeframes Number of subtimeframes processed in this FLP. Updated regularly.
     /// @param nEquipmentBytes Data volume out from the readout 'equipment' component in bytes. Can reach PetaBytes. Updated regularly.
     /// @param nRecordingBytes Data volume out from the readout 'recording' component in bytes. Can reach PetaBytes. Updated regularly.
     /// @param nFairMqBytes Data volume out from the readout 'fmq' component in bytes. Can reach PetaBytes. Updated regularly.
-    virtual void flpUpdateCounters(int64_t runNumber, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
-      int64_t nRecordingBytes, int64_t nFairMqBytes) = 0;
+    virtual void flpUpdateCounters(int64_t flpId, std::string flpName, int64_t nSubtimeframes, int64_t nEquipmentBytes,
+      int64_t nRecordingBytes, int64_t nFairMQBytes) = 0;
 
-    // virtual std::vector<Run> getRuns(const GetRunsParameters& parameters) = 0;
+    virtual std::vector<std::shared_ptr<org::openapitools::client::model::Run>> getRuns() = 0;
 
     /// Create a log
     /// 

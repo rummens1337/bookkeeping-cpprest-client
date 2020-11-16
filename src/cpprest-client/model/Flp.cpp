@@ -25,8 +25,8 @@ Flp::Flp()
 {
     m_BytesEquipmentReadOut = 0L;
     m_BytesEquipmentReadOutIsSet = false;
-    m_BytesFairMqReadOut = 0L;
-    m_BytesFairMqReadOutIsSet = false;
+    m_BytesFairMQReadOut = 0L;
+    m_BytesFairMQReadOutIsSet = false;
     m_BytesProcessed = 0L;
     m_BytesProcessedIsSet = false;
     m_BytesRecordingReadOut = 0L;
@@ -63,9 +63,9 @@ web::json::value Flp::toJson() const
     {
         val[utility::conversions::to_string_t("bytesEquipmentReadOut")] = ModelBase::toJson(m_BytesEquipmentReadOut);
     }
-    if(m_BytesFairMqReadOutIsSet)
+    if(m_BytesFairMQReadOutIsSet)
     {
-        val[utility::conversions::to_string_t("bytesFairMqReadOut")] = ModelBase::toJson(m_BytesFairMqReadOut);
+        val[utility::conversions::to_string_t("bytesFairMQReadOut")] = ModelBase::toJson(m_BytesFairMQReadOut);
     }
     if(m_BytesProcessedIsSet)
     {
@@ -117,14 +117,14 @@ bool Flp::fromJson(const web::json::value& val)
             setBytesEquipmentReadOut(refVal_bytesEquipmentReadOut);
         }
     }
-    if(val.has_field(utility::conversions::to_string_t("bytesFairMqReadOut")))
+    if(val.has_field(utility::conversions::to_string_t("bytesFairMQReadOut")))
     {
-        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("bytesFairMqReadOut"));
+        const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("bytesFairMQReadOut"));
         if(!fieldValue.is_null())
         {
-            int64_t refVal_bytesFairMqReadOut;
-            ok &= ModelBase::fromJson(fieldValue, refVal_bytesFairMqReadOut);
-            setBytesFairMqReadOut(refVal_bytesFairMqReadOut);
+            int64_t refVal_bytesFairMQReadOut;
+            ok &= ModelBase::fromJson(fieldValue, refVal_bytesFairMQReadOut);
+            setBytesFairMQReadOut(refVal_bytesFairMQReadOut);
         }
     }
     if(val.has_field(utility::conversions::to_string_t("bytesProcessed")))
@@ -221,9 +221,9 @@ void Flp::toMultipart(std::shared_ptr<MultipartFormData> multipart, const utilit
     {
         multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("bytesEquipmentReadOut"), m_BytesEquipmentReadOut));
     }
-    if(m_BytesFairMqReadOutIsSet)
+    if(m_BytesFairMQReadOutIsSet)
     {
-        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("bytesFairMqReadOut"), m_BytesFairMqReadOut));
+        multipart->add(ModelBase::toHttpContent(namePrefix + utility::conversions::to_string_t("bytesFairMQReadOut"), m_BytesFairMQReadOut));
     }
     if(m_BytesProcessedIsSet)
     {
@@ -274,11 +274,11 @@ bool Flp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("bytesEquipmentReadOut")), refVal_bytesEquipmentReadOut );
         setBytesEquipmentReadOut(refVal_bytesEquipmentReadOut);
     }
-    if(multipart->hasContent(utility::conversions::to_string_t("bytesFairMqReadOut")))
+    if(multipart->hasContent(utility::conversions::to_string_t("bytesFairMQReadOut")))
     {
-        int64_t refVal_bytesFairMqReadOut;
-        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("bytesFairMqReadOut")), refVal_bytesFairMqReadOut );
-        setBytesFairMqReadOut(refVal_bytesFairMqReadOut);
+        int64_t refVal_bytesFairMQReadOut;
+        ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("bytesFairMQReadOut")), refVal_bytesFairMQReadOut );
+        setBytesFairMQReadOut(refVal_bytesFairMQReadOut);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("bytesProcessed")))
     {
@@ -351,25 +351,25 @@ void Flp::unsetBytesEquipmentReadOut()
 {
     m_BytesEquipmentReadOutIsSet = false;
 }
-int64_t Flp::getBytesFairMqReadOut() const
+int64_t Flp::getBytesFairMQReadOut() const
 {
-    return m_BytesFairMqReadOut;
+    return m_BytesFairMQReadOut;
 }
 
-void Flp::setBytesFairMqReadOut(int64_t value)
+void Flp::setBytesFairMQReadOut(int64_t value)
 {
-    m_BytesFairMqReadOut = value;
-    m_BytesFairMqReadOutIsSet = true;
+    m_BytesFairMQReadOut = value;
+    m_BytesFairMQReadOutIsSet = true;
 }
 
-bool Flp::bytesFairMqReadOutIsSet() const
+bool Flp::bytesFairMQReadOutIsSet() const
 {
-    return m_BytesFairMqReadOutIsSet;
+    return m_BytesFairMQReadOutIsSet;
 }
 
-void Flp::unsetBytesFairMqReadOut()
+void Flp::unsetBytesFairMQReadOut()
 {
-    m_BytesFairMqReadOutIsSet = false;
+    m_BytesFairMQReadOutIsSet = false;
 }
 int64_t Flp::getBytesProcessed() const
 {
