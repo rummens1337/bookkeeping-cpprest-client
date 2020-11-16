@@ -67,3 +67,9 @@ export BOOKKEEPING_API_TOKEN=jnk5vh43785ycj4gdvlvm84fg...
 ./bookkeeping-api-cpp-example 1  # argument is run number to add
 ```
 Note: don't include the "Bearer " part of the token, it's added automatically.
+
+# Generate API client
+Generate the API client based on the OpenApi file
+```console
+java -jar openapi-generator-cli.jar generate -i openapi-source.yaml -g cpp-restsdk -o src/cpprest-client
+```
