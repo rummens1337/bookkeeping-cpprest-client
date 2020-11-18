@@ -197,10 +197,10 @@ void BookkeepingApi::createLog(utility::string_t text, utility::string_t title, 
     api.createLog(log).get();
 }
 
-// std::vector<Log> BookkeepingApi::getLogs(const GetLogsParameters& params)
-// {
-//     throw std::runtime_error("BookkeepingApi::getLogs() not yet supported");
-//     return {};
-// }
+std::vector<std::shared_ptr<org::openapitools::client::model::Log>> BookkeepingApi::getLogs()
+{
+    return org::openapitools::client::api::LogApi(apiClient).listLogs().get()->getData();
+}
+
 
 }

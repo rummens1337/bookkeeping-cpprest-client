@@ -9,6 +9,7 @@
 #include "LogSubtype.h"
 #include "OrderDirection.h"
 #include "cpprest-client/model/Run.h"
+#include "cpprest-client/model/Log.h"
 #include "RunType.h"
 #include "RunQuality.h"
 
@@ -74,6 +75,6 @@ class BookkeepingInterface {
     /// @return The ID of the created log.
     virtual void createLog(utility::string_t text, utility::string_t title, std::vector<std::int64_t> runNumbers = {}, std::int64_t parentLogId = -1) = 0;
     
-    // virtual std::vector<Log> getLogs(const GetLogsParameters& parameters) = 0;
+    virtual std::vector<std::shared_ptr<org::openapitools::client::model::Log>> getLogs() = 0;
 };
 }
