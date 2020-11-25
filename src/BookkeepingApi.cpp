@@ -16,6 +16,15 @@ namespace bookkeeping
 
 namespace
 {
+
+static uint64_t getUnixTimeStamp(const std::time_t* t = nullptr)
+{
+    //if specific time is not passed then get current time
+    std::time_t st = t == nullptr ? std::time(nullptr) : *t;
+    auto millisecs = (static_cast<std::chrono::milliseconds>(st).count() * 1000);
+    return static_cast<uint64_t>(millisecs);
+}
+
 std::string orderDirectionToString(OrderDirection orderDirection) {
     switch (orderDirection) {
         case OrderDirection::ASC: return "ASC";
@@ -116,15 +125,15 @@ BookkeepingApi::BookkeepingApi(std::string url, std::string token)
 }
 
 
-void BookkeepingApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Start,
-      boost::posix_time::ptime triggerStart, utility::string_t activityId, 
+void BookkeepingApi::runStart(int64_t runNumber, std::time_t o2Start,
+      std::time_t triggerStart, utility::string_t activityId, 
       RunType runType, int64_t nDetectors, int64_t nFlps, int64_t nEpns) 
 {
     org::openapitools::client::api::RunApi runApi(apiClient);
     auto run = std::make_shared<org::openapitools::client::model::Run>();
     run->setRunNumber(runNumber);
-    run->setTimeO2Start(ptimeToDateTime(o2Start));
-    run->setTimeTrgStart(ptimeToDateTime(triggerStart));
+    run->setTimeO2Start(getUnixTimeStamp(&o2Start));
+    run->setTimeTrgStart(getUnixTimeStamp(&triggerStart));
     run->setRunType(runTypeToActualRunType(runType));
     run->setActivityId(activityId);
     run->setNDetectors(nDetectors);
@@ -133,13 +142,13 @@ void BookkeepingApi::runStart(int64_t runNumber, boost::posix_time::ptime o2Star
     runApi.createRun(run).get();
 }
 
-void BookkeepingApi::runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
+void BookkeepingApi::runEnd(int64_t runNumber, std::time_t o2End, std::time_t triggerEnd,
       RunQuality runQuality)
 {
     org::openapitools::client::api::RunApi runApi(apiClient);
     auto run = std::make_shared<org::openapitools::client::model::Run>();
-    run->setTimeO2End(ptimeToDateTime(o2End));
-    run->setTimeTrgEnd(ptimeToDateTime(triggerEnd));
+    run->setTimeO2End(getUnixTimeStamp(&o2End));
+    run->setTimeTrgEnd(getUnixTimeStamp(&triggerEnd));
     run->setRunQuality(runQualityToActualRunQuality(runQuality));
     runApi.endRun(runNumber, run).get();
 }

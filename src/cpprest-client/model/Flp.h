@@ -92,11 +92,11 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    utility::datetime getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
 
-    void setCreatedAt(const utility::datetime& value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// FLP hostname.
@@ -137,11 +137,11 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was last updated.
     /// </summary>
-    utility::datetime getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
 
-    void setUpdatedAt(const utility::datetime& value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -153,7 +153,7 @@ protected:
     bool m_BytesProcessedIsSet;
     int64_t m_BytesRecordingReadOut;
     bool m_BytesRecordingReadOutIsSet;
-    utility::datetime m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
     utility::string_t m_Hostname;
     bool m_HostnameIsSet;
@@ -163,7 +163,7 @@ protected:
     bool m_NTimeframesIsSet;
     utility::string_t m_Name;
     bool m_NameIsSet;
-    utility::datetime m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 };
 

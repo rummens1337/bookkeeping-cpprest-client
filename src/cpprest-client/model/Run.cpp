@@ -27,7 +27,7 @@ Run::Run()
     m_ActivityIdIsSet = false;
     m_BytesReadOut = 0L;
     m_BytesReadOutIsSet = false;
-    m_CreatedAt = utility::datetime();
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Id = 0L;
     m_IdIsSet = false;
@@ -43,15 +43,15 @@ Run::Run()
     m_RunNumberIsSet = false;
     m_RunQualityIsSet = false;
     m_RunTypeIsSet = false;
-    m_TimeO2End = utility::datetime();
+    m_TimeO2End = 0L;
     m_TimeO2EndIsSet = false;
-    m_TimeO2Start = utility::datetime();
+    m_TimeO2Start = 0L;
     m_TimeO2StartIsSet = false;
-    m_TimeTrgEnd = utility::datetime();
+    m_TimeTrgEnd = 0L;
     m_TimeTrgEndIsSet = false;
-    m_TimeTrgStart = utility::datetime();
+    m_TimeTrgStart = 0L;
     m_TimeTrgStartIsSet = false;
-    m_UpdatedAt = utility::datetime();
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -166,7 +166,7 @@ bool Run::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("createdAt"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_createdAt;
+            int64_t refVal_createdAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_createdAt);
             setCreatedAt(refVal_createdAt);
         }
@@ -256,7 +256,7 @@ bool Run::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("timeO2End"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_timeO2End;
+            int64_t refVal_timeO2End;
             ok &= ModelBase::fromJson(fieldValue, refVal_timeO2End);
             setTimeO2End(refVal_timeO2End);
         }
@@ -266,7 +266,7 @@ bool Run::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("timeO2Start"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_timeO2Start;
+            int64_t refVal_timeO2Start;
             ok &= ModelBase::fromJson(fieldValue, refVal_timeO2Start);
             setTimeO2Start(refVal_timeO2Start);
         }
@@ -276,7 +276,7 @@ bool Run::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("timeTrgEnd"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_timeTrgEnd;
+            int64_t refVal_timeTrgEnd;
             ok &= ModelBase::fromJson(fieldValue, refVal_timeTrgEnd);
             setTimeTrgEnd(refVal_timeTrgEnd);
         }
@@ -286,7 +286,7 @@ bool Run::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("timeTrgStart"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_timeTrgStart;
+            int64_t refVal_timeTrgStart;
             ok &= ModelBase::fromJson(fieldValue, refVal_timeTrgStart);
             setTimeTrgStart(refVal_timeTrgStart);
         }
@@ -296,7 +296,7 @@ bool Run::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("updatedAt"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_updatedAt;
+            int64_t refVal_updatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_updatedAt);
             setUpdatedAt(refVal_updatedAt);
         }
@@ -400,7 +400,7 @@ bool Run::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t("createdAt")))
     {
-        utility::datetime refVal_createdAt;
+        int64_t refVal_createdAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("createdAt")), refVal_createdAt );
         setCreatedAt(refVal_createdAt);
     }
@@ -454,31 +454,31 @@ bool Run::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t("timeO2End")))
     {
-        utility::datetime refVal_timeO2End;
+        int64_t refVal_timeO2End;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("timeO2End")), refVal_timeO2End );
         setTimeO2End(refVal_timeO2End);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("timeO2Start")))
     {
-        utility::datetime refVal_timeO2Start;
+        int64_t refVal_timeO2Start;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("timeO2Start")), refVal_timeO2Start );
         setTimeO2Start(refVal_timeO2Start);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("timeTrgEnd")))
     {
-        utility::datetime refVal_timeTrgEnd;
+        int64_t refVal_timeTrgEnd;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("timeTrgEnd")), refVal_timeTrgEnd );
         setTimeTrgEnd(refVal_timeTrgEnd);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("timeTrgStart")))
     {
-        utility::datetime refVal_timeTrgStart;
+        int64_t refVal_timeTrgStart;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("timeTrgStart")), refVal_timeTrgStart );
         setTimeTrgStart(refVal_timeTrgStart);
     }
     if(multipart->hasContent(utility::conversions::to_string_t("updatedAt")))
     {
-        utility::datetime refVal_updatedAt;
+        int64_t refVal_updatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("updatedAt")), refVal_updatedAt );
         setUpdatedAt(refVal_updatedAt);
     }
@@ -525,12 +525,12 @@ void Run::unsetBytesReadOut()
 {
     m_BytesReadOutIsSet = false;
 }
-utility::datetime Run::getCreatedAt() const
+int64_t Run::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
-void Run::setCreatedAt(const utility::datetime& value)
+void Run::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -705,12 +705,12 @@ void Run::unsetRunType()
 {
     m_RunTypeIsSet = false;
 }
-utility::datetime Run::getTimeO2End() const
+int64_t Run::getTimeO2End() const
 {
     return m_TimeO2End;
 }
 
-void Run::setTimeO2End(const utility::datetime& value)
+void Run::setTimeO2End(int64_t value)
 {
     m_TimeO2End = value;
     m_TimeO2EndIsSet = true;
@@ -725,12 +725,12 @@ void Run::unsetTimeO2End()
 {
     m_TimeO2EndIsSet = false;
 }
-utility::datetime Run::getTimeO2Start() const
+int64_t Run::getTimeO2Start() const
 {
     return m_TimeO2Start;
 }
 
-void Run::setTimeO2Start(const utility::datetime& value)
+void Run::setTimeO2Start(int64_t value)
 {
     m_TimeO2Start = value;
     m_TimeO2StartIsSet = true;
@@ -745,12 +745,12 @@ void Run::unsetTimeO2Start()
 {
     m_TimeO2StartIsSet = false;
 }
-utility::datetime Run::getTimeTrgEnd() const
+int64_t Run::getTimeTrgEnd() const
 {
     return m_TimeTrgEnd;
 }
 
-void Run::setTimeTrgEnd(const utility::datetime& value)
+void Run::setTimeTrgEnd(int64_t value)
 {
     m_TimeTrgEnd = value;
     m_TimeTrgEndIsSet = true;
@@ -765,12 +765,12 @@ void Run::unsetTimeTrgEnd()
 {
     m_TimeTrgEndIsSet = false;
 }
-utility::datetime Run::getTimeTrgStart() const
+int64_t Run::getTimeTrgStart() const
 {
     return m_TimeTrgStart;
 }
 
-void Run::setTimeTrgStart(const utility::datetime& value)
+void Run::setTimeTrgStart(int64_t value)
 {
     m_TimeTrgStart = value;
     m_TimeTrgStartIsSet = true;
@@ -785,12 +785,12 @@ void Run::unsetTimeTrgStart()
 {
     m_TimeTrgStartIsSet = false;
 }
-utility::datetime Run::getUpdatedAt() const
+int64_t Run::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
-void Run::setUpdatedAt(const utility::datetime& value)
+void Run::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

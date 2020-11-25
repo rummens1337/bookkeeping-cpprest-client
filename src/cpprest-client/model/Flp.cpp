@@ -31,7 +31,7 @@ Flp::Flp()
     m_BytesProcessedIsSet = false;
     m_BytesRecordingReadOut = 0L;
     m_BytesRecordingReadOutIsSet = false;
-    m_CreatedAt = utility::datetime();
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Hostname = utility::conversions::to_string_t("");
     m_HostnameIsSet = false;
@@ -41,7 +41,7 @@ Flp::Flp()
     m_NTimeframesIsSet = false;
     m_Name = utility::conversions::to_string_t("");
     m_NameIsSet = false;
-    m_UpdatedAt = utility::datetime();
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -152,7 +152,7 @@ bool Flp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("createdAt"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_createdAt;
+            int64_t refVal_createdAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_createdAt);
             setCreatedAt(refVal_createdAt);
         }
@@ -202,7 +202,7 @@ bool Flp::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("updatedAt"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_updatedAt;
+            int64_t refVal_updatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_updatedAt);
             setUpdatedAt(refVal_updatedAt);
         }
@@ -294,7 +294,7 @@ bool Flp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t("createdAt")))
     {
-        utility::datetime refVal_createdAt;
+        int64_t refVal_createdAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("createdAt")), refVal_createdAt );
         setCreatedAt(refVal_createdAt);
     }
@@ -324,7 +324,7 @@ bool Flp::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, const util
     }
     if(multipart->hasContent(utility::conversions::to_string_t("updatedAt")))
     {
-        utility::datetime refVal_updatedAt;
+        int64_t refVal_updatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("updatedAt")), refVal_updatedAt );
         setUpdatedAt(refVal_updatedAt);
     }
@@ -411,12 +411,12 @@ void Flp::unsetBytesRecordingReadOut()
 {
     m_BytesRecordingReadOutIsSet = false;
 }
-utility::datetime Flp::getCreatedAt() const
+int64_t Flp::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
-void Flp::setCreatedAt(const utility::datetime& value)
+void Flp::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -511,12 +511,12 @@ void Flp::unsetName()
 {
     m_NameIsSet = false;
 }
-utility::datetime Flp::getUpdatedAt() const
+int64_t Flp::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
-void Flp::setUpdatedAt(const utility::datetime& value)
+void Flp::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

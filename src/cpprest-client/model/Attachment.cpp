@@ -23,7 +23,7 @@ namespace model {
 
 Attachment::Attachment()
 {
-    m_CreatedAt = utility::datetime();
+    m_CreatedAt = 0L;
     m_CreatedAtIsSet = false;
     m_Encoding = utility::conversions::to_string_t("");
     m_EncodingIsSet = false;
@@ -41,7 +41,7 @@ Attachment::Attachment()
     m_PathIsSet = false;
     m_Size = 0;
     m_SizeIsSet = false;
-    m_UpdatedAt = utility::datetime();
+    m_UpdatedAt = 0L;
     m_UpdatedAtIsSet = false;
 }
 
@@ -112,7 +112,7 @@ bool Attachment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("createdAt"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_createdAt;
+            int64_t refVal_createdAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_createdAt);
             setCreatedAt(refVal_createdAt);
         }
@@ -202,7 +202,7 @@ bool Attachment::fromJson(const web::json::value& val)
         const web::json::value& fieldValue = val.at(utility::conversions::to_string_t("updatedAt"));
         if(!fieldValue.is_null())
         {
-            utility::datetime refVal_updatedAt;
+            int64_t refVal_updatedAt;
             ok &= ModelBase::fromJson(fieldValue, refVal_updatedAt);
             setUpdatedAt(refVal_updatedAt);
         }
@@ -270,7 +270,7 @@ bool Attachment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
 
     if(multipart->hasContent(utility::conversions::to_string_t("createdAt")))
     {
-        utility::datetime refVal_createdAt;
+        int64_t refVal_createdAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("createdAt")), refVal_createdAt );
         setCreatedAt(refVal_createdAt);
     }
@@ -324,19 +324,19 @@ bool Attachment::fromMultiPart(std::shared_ptr<MultipartFormData> multipart, con
     }
     if(multipart->hasContent(utility::conversions::to_string_t("updatedAt")))
     {
-        utility::datetime refVal_updatedAt;
+        int64_t refVal_updatedAt;
         ok &= ModelBase::fromHttpContent(multipart->getContent(utility::conversions::to_string_t("updatedAt")), refVal_updatedAt );
         setUpdatedAt(refVal_updatedAt);
     }
     return ok;
 }
 
-utility::datetime Attachment::getCreatedAt() const
+int64_t Attachment::getCreatedAt() const
 {
     return m_CreatedAt;
 }
 
-void Attachment::setCreatedAt(const utility::datetime& value)
+void Attachment::setCreatedAt(int64_t value)
 {
     m_CreatedAt = value;
     m_CreatedAtIsSet = true;
@@ -511,12 +511,12 @@ void Attachment::unsetSize()
 {
     m_SizeIsSet = false;
 }
-utility::datetime Attachment::getUpdatedAt() const
+int64_t Attachment::getUpdatedAt() const
 {
     return m_UpdatedAt;
 }
 
-void Attachment::setUpdatedAt(const utility::datetime& value)
+void Attachment::setUpdatedAt(int64_t value)
 {
     m_UpdatedAt = value;
     m_UpdatedAtIsSet = true;

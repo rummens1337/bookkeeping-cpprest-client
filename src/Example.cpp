@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 
     // Start & end run, with FLPs
     {
-        auto now = boost::posix_time::microsec_clock::universal_time();
+        std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
         std::cout << "Starting run " << runNumber << std::endl;
         api->runStart(runNumber, now, now, "cpp-api", RunType::TECHNICAL, 123, 200, 100);
 
@@ -49,13 +49,12 @@ int main(int argc, char const *argv[])
 
         std::cout << "Ending run" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        now = boost::posix_time::microsec_clock::universal_time();
+        now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
         api->runEnd(runNumber, now, now, RunQuality::UNKNOWN);
 
         // todo: add attachments to request
         std::cout << "Creating log" << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(1));
-        now = boost::posix_time::microsec_clock::universal_time();
         api->createLog("Porsche 911..", "LoggyTitle", {1, 5, 6}, 1);
     }
 
@@ -65,6 +64,7 @@ int main(int argc, char const *argv[])
 
         for (const auto &run : runs)
         {
+            std::cout << run->getRunNumber() << std::endl;
             std::cout << run->toJson() << std::endl;
         }
         std::cout << "Amount of runs retrieved: " << runs.size() << std::endl;

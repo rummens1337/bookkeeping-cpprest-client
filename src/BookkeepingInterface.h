@@ -37,7 +37,7 @@ class BookkeepingInterface {
     /// @param nDetectors Number of detectors in the Run.
     /// @param nFlps Number of FLP nodes in the Run.
     /// @param nEpns Number of EPN nodes in the Run.
-    virtual void runStart(int64_t runNumber, boost::posix_time::ptime o2Start, boost::posix_time::ptime triggerStart,
+    virtual void runStart(int64_t runNumber, std::time_t o2Start, std::time_t triggerStart,
       utility::string_t activityId, RunType runType, int64_t nDetectors, int64_t nFlps, int64_t nEpns) = 0;
 
     /// Ends a run
@@ -46,7 +46,7 @@ class BookkeepingInterface {
     /// @param o2End Time (UTC) when Run was completely stopped.
     /// @param triggerEnd (UTC) Time when Trigger subsystem was stopped.
     /// @param runQuality Overall quality of the data from O2 point of view.
-    virtual void runEnd(int64_t runNumber, boost::posix_time::ptime o2End, boost::posix_time::ptime triggerEnd,
+    virtual void runEnd(int64_t runNumber, std::time_t o2End, std::time_t triggerEnd,
       RunQuality runQuality) = 0;
 
     /// Adds an FLP to a run
@@ -70,6 +70,7 @@ class BookkeepingInterface {
     virtual std::vector<std::shared_ptr<org::openapitools::client::model::Run>> getRuns() = 0;
 
     /// Create a log
+
     /// 
     /// @param parameters Parameters for the log.
     /// @return The ID of the created log.

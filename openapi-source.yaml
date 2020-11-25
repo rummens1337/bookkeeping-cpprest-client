@@ -857,9 +857,9 @@ components:
       properties:
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         encoding:
           $ref: '#/components/schemas/FileEncoding'
         fileName:
@@ -877,10 +877,10 @@ components:
         size:
           $ref: '#/components/schemas/FileSize'
         updatedAt:
-          description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          description: Unix timestamp when this entity was created.
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - id
       additionalProperties: false
@@ -966,9 +966,9 @@ components:
           type: number
         start:
           description: The unix timestamp of the moment that the the server went online.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - age
         - start
@@ -979,16 +979,16 @@ components:
       properties:
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         id:
           $ref: '#/components/schemas/EntityId'
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - id
     EntityId:
@@ -1063,14 +1063,14 @@ components:
       properties:
         from:
           description: The earliest allowed unix timestamp for the fetched data.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         to:
           description: The latest allowed unix timestamp for the fetched data.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       additionalProperties: false
     FilterLogsOptions:
       description: Specifies the log related filter requirements for a request.
@@ -1123,9 +1123,9 @@ components:
           $ref: '#/components/schemas/FlpBytesRecordingReadOut'
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         hostname:
           $ref: '#/components/schemas/FlpHostname'
         id:
@@ -1136,9 +1136,9 @@ components:
           $ref: '#/components/schemas/FlpName'
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - bytesEquipmentReadOut
         - bytesFairMQReadOut
@@ -1207,9 +1207,9 @@ components:
           $ref: '#/components/schemas/User'
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         id:
           $ref: '#/components/schemas/EntityId'
         origin:
@@ -1247,9 +1247,9 @@ components:
           $ref: '#/components/schemas/LogTitle'
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - author
         - id
@@ -1325,9 +1325,9 @@ components:
           $ref: '#/components/schemas/ArrayOfLogTrees'
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         id:
           $ref: '#/components/schemas/EntityId'
         origin:
@@ -1365,9 +1365,9 @@ components:
           $ref: '#/components/schemas/LogTitle'
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - author
         - children
@@ -1434,9 +1434,9 @@ components:
           $ref: '#/components/schemas/RunBytesReadOut'
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         id:
           $ref: '#/components/schemas/EntityId'
         nDetectors:
@@ -1463,9 +1463,9 @@ components:
           $ref: '#/components/schemas/RunTrgStart'
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - activityId
         - bytesReadOut
@@ -1507,14 +1507,14 @@ components:
       format: int64
     RunO2End:
       description: Unix timestamp when this entity was created.
-      type: string
-      format: date-time
-      example: "2018-03-20T09:12:28Z"
+      type: integer
+      format: int64
+      example: 853113599
     RunO2Start:
       description: Unix timestamp when this entity was created.
-      type: string
-      format: date-time
-      example: "2018-03-20T09:12:28Z"
+      type: integer
+      format: int64
+      example: 853113599
     RunOrigin:
       description: Type of creator.
       type: string
@@ -1549,14 +1549,14 @@ components:
       format: int64
     RunTrgEnd:
       description: Unix timestamp when this entity was created.
-      type: string
-      format: date-time
-      example: "2018-03-20T09:12:28Z"
+      type: integer
+      format: int64
+      example: 853113599
     RunTrgStart:
       description: Unix timestamp when this entity was created.
-      type: string
-      format: date-time
-      example: "2018-03-20T09:12:28Z"
+      type: integer
+      format: int64
+      example: 853113599
     RunType:
       description: Specifies the type of run.
       type: string
@@ -1576,9 +1576,9 @@ components:
       properties:
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         id:
           $ref: '#/components/schemas/EntityId'
         name:
@@ -1586,9 +1586,9 @@ components:
           type: string
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - id
         - name
@@ -1608,9 +1608,9 @@ components:
       properties:
         createdAt:
           description: Unix timestamp when this entity was created.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
         id:
           $ref: '#/components/schemas/EntityId'
         text:
@@ -1618,9 +1618,9 @@ components:
           type: string
         updatedAt:
           description: Unix timestamp when this entity was last updated.
-          type: string
-          format: date-time
-          example: "2018-03-20T09:12:28Z"
+          type: integer
+          format: int64
+          example: 853113599
       required:
         - id
         - text

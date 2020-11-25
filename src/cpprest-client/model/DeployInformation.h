@@ -21,7 +21,6 @@
 
 #include "../ModelBase.h"
 
-#include <cpprest/details/basic_types.h>
 
 namespace org {
 namespace openapitools {
@@ -65,17 +64,17 @@ public:
     /// <summary>
     /// The unix timestamp of the moment that the the server went online.
     /// </summary>
-    utility::datetime getStart() const;
+    int64_t getStart() const;
     bool startIsSet() const;
     void unsetStart();
 
-    void setStart(const utility::datetime& value);
+    void setStart(int64_t value);
 
 
 protected:
     double m_Age;
     bool m_AgeIsSet;
-    utility::datetime m_Start;
+    int64_t m_Start;
     bool m_StartIsSet;
 };
 

@@ -76,11 +76,11 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    utility::datetime getCreatedAt() const;
+    int64_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
 
-    void setCreatedAt(const utility::datetime& value);
+    void setCreatedAt(int64_t value);
 
     /// <summary>
     /// The unique identifier of this entity.
@@ -157,47 +157,47 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    utility::datetime getTimeO2End() const;
+    int64_t getTimeO2End() const;
     bool timeO2EndIsSet() const;
     void unsetTimeO2End();
 
-    void setTimeO2End(const utility::datetime& value);
+    void setTimeO2End(int64_t value);
 
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    utility::datetime getTimeO2Start() const;
+    int64_t getTimeO2Start() const;
     bool timeO2StartIsSet() const;
     void unsetTimeO2Start();
 
-    void setTimeO2Start(const utility::datetime& value);
+    void setTimeO2Start(int64_t value);
 
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    utility::datetime getTimeTrgEnd() const;
+    int64_t getTimeTrgEnd() const;
     bool timeTrgEndIsSet() const;
     void unsetTimeTrgEnd();
 
-    void setTimeTrgEnd(const utility::datetime& value);
+    void setTimeTrgEnd(int64_t value);
 
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    utility::datetime getTimeTrgStart() const;
+    int64_t getTimeTrgStart() const;
     bool timeTrgStartIsSet() const;
     void unsetTimeTrgStart();
 
-    void setTimeTrgStart(const utility::datetime& value);
+    void setTimeTrgStart(int64_t value);
 
     /// <summary>
     /// Unix timestamp when this entity was last updated.
     /// </summary>
-    utility::datetime getUpdatedAt() const;
+    int64_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
 
-    void setUpdatedAt(const utility::datetime& value);
+    void setUpdatedAt(int64_t value);
 
 
 protected:
@@ -205,7 +205,7 @@ protected:
     bool m_ActivityIdIsSet;
     int64_t m_BytesReadOut;
     bool m_BytesReadOutIsSet;
-    utility::datetime m_CreatedAt;
+    int64_t m_CreatedAt;
     bool m_CreatedAtIsSet;
     int64_t m_Id;
     bool m_IdIsSet;
@@ -223,15 +223,15 @@ protected:
     bool m_RunQualityIsSet;
     std::shared_ptr<RunType> m_RunType;
     bool m_RunTypeIsSet;
-    utility::datetime m_TimeO2End;
+    int64_t m_TimeO2End;
     bool m_TimeO2EndIsSet;
-    utility::datetime m_TimeO2Start;
+    int64_t m_TimeO2Start;
     bool m_TimeO2StartIsSet;
-    utility::datetime m_TimeTrgEnd;
+    int64_t m_TimeTrgEnd;
     bool m_TimeTrgEndIsSet;
-    utility::datetime m_TimeTrgStart;
+    int64_t m_TimeTrgStart;
     bool m_TimeTrgStartIsSet;
-    utility::datetime m_UpdatedAt;
+    int64_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 };
 
