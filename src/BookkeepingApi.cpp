@@ -185,6 +185,7 @@ std::vector<std::shared_ptr<org::openapitools::client::model::Run>> BookkeepingA
     return org::openapitools::client::api::RunApi(apiClient).listRuns().get()->getData();
 }
 
+
 void BookkeepingApi::createLog(utility::string_t text, utility::string_t title, std::vector<std::int64_t> runNumbers, std::int64_t parentLogId)
 {
     org::openapitools::client::api::LogApi api(apiClient);

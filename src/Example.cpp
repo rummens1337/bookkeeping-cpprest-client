@@ -64,7 +64,6 @@ int main(int argc, char const *argv[])
 
         for (const auto &run : runs)
         {
-            std::cout << run->getRunNumber() << std::endl;
             std::cout << run->toJson() << std::endl;
         }
         std::cout << "Amount of runs retrieved: " << runs.size() << std::endl;

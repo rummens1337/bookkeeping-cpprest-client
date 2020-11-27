@@ -66,7 +66,7 @@ public:
     /// </remarks>
     /// <param name="flpId">The id of the flp to retrieve</param>
     pplx::task<std::shared_ptr<FlpResponse>> getFlpById(
-        int64_t flpId
+        int32_t flpId
     ) const;
     /// <summary>
     /// List all flps
@@ -85,7 +85,7 @@ public:
     /// <param name="flpId">The id of the flp to retrieve</param>
     /// <param name="updateFlp"></param>
     pplx::task<std::shared_ptr<FlpResponse>> updateFlp(
-        int64_t flpId,
+        int32_t flpId,
         std::shared_ptr<UpdateFlp> updateFlp
     ) const;
 

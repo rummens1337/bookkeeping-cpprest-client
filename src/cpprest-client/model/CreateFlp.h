@@ -74,11 +74,11 @@ public:
     /// <summary>
     /// The unique identifier of this entity.
     /// </summary>
-    int64_t getRunNumber() const;
+    int32_t getRunNumber() const;
     bool runNumberIsSet() const;
     void unsetRunNumber();
 
-    void setRunNumber(int64_t value);
+    void setRunNumber(int32_t value);
 
 
 protected:
@@ -86,7 +86,7 @@ protected:
     bool m_NameIsSet;
     utility::string_t m_Hostname;
     bool m_HostnameIsSet;
-    int64_t m_RunNumber;
+    int32_t m_RunNumber;
     bool m_RunNumberIsSet;
 };
 

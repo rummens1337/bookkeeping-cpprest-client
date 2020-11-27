@@ -184,7 +184,7 @@ pplx::task<std::shared_ptr<LogResponse>> FlpApi::createFlp(std::shared_ptr<Creat
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FlpResponse>> FlpApi::getFlpById(int64_t flpId) const
+pplx::task<std::shared_ptr<FlpResponse>> FlpApi::getFlpById(int32_t flpId) const
 {
 
 
@@ -437,7 +437,7 @@ pplx::task<std::shared_ptr<ArrayOfFlpsResponse>> FlpApi::listFlps() const
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<FlpResponse>> FlpApi::updateFlp(int64_t flpId, std::shared_ptr<UpdateFlp> updateFlp) const
+pplx::task<std::shared_ptr<FlpResponse>> FlpApi::updateFlp(int32_t flpId, std::shared_ptr<UpdateFlp> updateFlp) const
 {
 
     // verify the required parameter 'updateFlp' is set

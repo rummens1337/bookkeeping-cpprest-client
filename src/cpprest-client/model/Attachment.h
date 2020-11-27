@@ -56,11 +56,11 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getCreatedAt() const;
+    int32_t getCreatedAt() const;
     bool createdAtIsSet() const;
     void unsetCreatedAt();
 
-    void setCreatedAt(int64_t value);
+    void setCreatedAt(int32_t value);
 
     /// <summary>
     /// Encoding used on the file.
@@ -83,20 +83,20 @@ public:
     /// <summary>
     /// The unique identifier of this entity.
     /// </summary>
-    int64_t getId() const;
+    int32_t getId() const;
     bool idIsSet() const;
     void unsetId();
 
-    void setId(int64_t value);
+    void setId(int32_t value);
 
     /// <summary>
     /// The unique identifier of this entity.
     /// </summary>
-    int64_t getLogId() const;
+    int32_t getLogId() const;
     bool logIdIsSet() const;
     void unsetLogId();
 
-    void setLogId(int64_t value);
+    void setLogId(int32_t value);
 
     /// <summary>
     /// Mime-type of a file.
@@ -137,23 +137,23 @@ public:
     /// <summary>
     /// Unix timestamp when this entity was created.
     /// </summary>
-    int64_t getUpdatedAt() const;
+    int32_t getUpdatedAt() const;
     bool updatedAtIsSet() const;
     void unsetUpdatedAt();
 
-    void setUpdatedAt(int64_t value);
+    void setUpdatedAt(int32_t value);
 
 
 protected:
-    int64_t m_CreatedAt;
+    int32_t m_CreatedAt;
     bool m_CreatedAtIsSet;
     utility::string_t m_Encoding;
     bool m_EncodingIsSet;
     utility::string_t m_FileName;
     bool m_FileNameIsSet;
-    int64_t m_Id;
+    int32_t m_Id;
     bool m_IdIsSet;
-    int64_t m_LogId;
+    int32_t m_LogId;
     bool m_LogIdIsSet;
     utility::string_t m_MimeType;
     bool m_MimeTypeIsSet;
@@ -163,7 +163,7 @@ protected:
     bool m_PathIsSet;
     int32_t m_Size;
     bool m_SizeIsSet;
-    int64_t m_UpdatedAt;
+    int32_t m_UpdatedAt;
     bool m_UpdatedAtIsSet;
 };
 
