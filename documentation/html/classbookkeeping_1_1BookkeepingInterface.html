@@ -93,10 +93,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a539a235369b684ede06ac94b0b156e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a log.  <a href="classbookkeeping_1_1BookkeepingInterface.html#a539a235369b684ede06ac94b0b156e80">More...</a><br /></td></tr>
 <tr class="separator:a539a235369b684ede06ac94b0b156e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af874c734bbbd4b9e0876128553edec8d"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::shared_ptr&lt; org::openapitools::client::model::Log &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbookkeeping_1_1BookkeepingInterface.html#af874c734bbbd4b9e0876128553edec8d">getLogs</a> ()=0</td></tr>
-<tr class="memdesc:af874c734bbbd4b9e0876128553edec8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last 100 logs.  <a href="classbookkeeping_1_1BookkeepingInterface.html#af874c734bbbd4b9e0876128553edec8d">More...</a><br /></td></tr>
+<tr class="memdesc:af874c734bbbd4b9e0876128553edec8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: not working properly yet. Get the last 100 logs.  <a href="classbookkeeping_1_1BookkeepingInterface.html#af874c734bbbd4b9e0876128553edec8d">More...</a><br /></td></tr>
 <tr class="separator:af874c734bbbd4b9e0876128553edec8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e3579032505228d0c59c6d1be3547c0"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; std::shared_ptr&lt; org::openapitools::client::model::Run &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbookkeeping_1_1BookkeepingInterface.html#a2e3579032505228d0c59c6d1be3547c0">getRuns</a> ()=0</td></tr>
-<tr class="memdesc:a2e3579032505228d0c59c6d1be3547c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the last 100 runs.  <a href="classbookkeeping_1_1BookkeepingInterface.html#a2e3579032505228d0c59c6d1be3547c0">More...</a><br /></td></tr>
+<tr class="memdesc:a2e3579032505228d0c59c6d1be3547c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: not working properly yet. Gets the last 100 runs.  <a href="classbookkeeping_1_1BookkeepingInterface.html#a2e3579032505228d0c59c6d1be3547c0">More...</a><br /></td></tr>
 <tr class="separator:a2e3579032505228d0c59c6d1be3547c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -156,6 +156,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -205,6 +211,12 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">runNumber</td><td>Integer ID of a specific data taking session </td></tr>
     <tr><td class="paramname">flpName</td><td>Identifying name of the FLP </td></tr>
     <tr><td class="paramname">hostName</td><td>Host name of the FLP </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -281,6 +293,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -307,7 +325,13 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the last 100 logs. </p>
+<p>TODO: not working properly yet. Get the last 100 logs. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>ArrayOfLogsResponse </dd></dl>
 
 </div>
@@ -335,7 +359,13 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Gets the last 100 runs. </p>
+<p>TODO: not working properly yet. Gets the last 100 runs. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>ArrayOfRunsResponse </dd></dl>
 
 </div>
@@ -393,6 +423,12 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">o2End</td><td>Time (UTC) when Run was completely stopped </td></tr>
     <tr><td class="paramname">triggerEnd</td><td>(UTC) Time when Trigger subsystem was stopped </td></tr>
     <tr><td class="paramname">runQuality</td><td>Overall quality of the data from O2 point of view </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -479,6 +515,12 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">nDetectors</td><td>Number of detectors in the Run </td></tr>
     <tr><td class="paramname">nFlps</td><td>Number of FLP nodes in the Run </td></tr>
     <tr><td class="paramname">nEpns</td><td>Number of EPN nodes in the Run </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">org::openapitools::client::api::ApiException</td><td></td></tr>
   </table>
   </dd>
 </dl>
